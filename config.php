@@ -5,4 +5,10 @@ define("PASS", "");
 define("DB", "animalsofvietnam");
 define("ROOT", dirname(__FILE__));
 define("BASE_URL", "http://localhost/");
+
+$mysqli = new mysqli(HOST, USER, PASS, DB);
+if ($mysqli->connect_error) {
+    die("Kết nối CSDL thất bại!<br>--> ".$mysqli->connect_error);
+    exit();
+}
 ?>

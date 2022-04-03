@@ -1,7 +1,7 @@
 <?php
-    include("config.php");
-    include("autoload.php");
-    $mysqli = new mysqli("localhost","root","","animalsofvietnam");
+    // include("config.php");
+    // include("autoload.php");
+    // $mysqli = new mysqli("localhost","root","","animalsofvietnam");
 ?>
 
 <?php
@@ -9,7 +9,7 @@
 	$query_chitiet = mysqli_query($mysqli,$sql_chitiet);
 	while($row_chitiet = mysqli_fetch_array($query_chitiet)){
 ?>
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,6 +35,8 @@
             <input type="text" class="input_search form-control" placeholder="Nhập tên loài chim cần tìm...">
             <button type="submit" class="btn search_icon"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
+         -->
+
         <div class="container-fluid p-4">
             <div class="row">
                 <div class="col-4">
@@ -250,10 +252,11 @@
         <?php
             }
         ?>
-        <div class="footer">
+
+        <!-- <div class="footer">
             Đây là Footers
         </div>
     </div>
 </body>
 
-</html>
+</html> -->
