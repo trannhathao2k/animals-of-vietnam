@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0px;
+    font-family: Roboto, Helvetica, sans-serif;
+}
+.header{
+    height: 72px;
+    background-color: #2FAADF;
+    margin: 0;
+}
+
+.root {
+    padding: 0;
+}
+.input_search {
+    display: inline-block;
+    width: 500px;
+}
+.search_icon {
+    width: 40px;
+    background-color: black;
+    color: white;
+    transform: translateY(-2px);
+}
+#thuonghieu {
+    width: 300px;
+}
+.link {
+    font-size: 18px;
+    float: right;
+    line-height: 100px;
+    margin-right: 15px;
+    transform: translateY(-10px);
+}
+.body{
+    background-color: #CDEDED;
+    
+}
+.ochua {
+    border-radius: 10px;
+    background-color: white;
+}
+.cb {
+    padding: 7px;
+    color: #888888;
+    border: 2px solid #888888;
+}
+
+.sl-loai {
+    color:red;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    font-weight: bold;
+}
+
+
+
+.oitem a {
+    color: black;
+    text-decoration: none;
+}
+
+.oitem {
+    border-radius: 7px;
+    background-color: white;
+    border: 2px solid #888888;
+    padding: 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+
+.oitem:hover {
+    background-color: #2FAADF;
+    border: #1b7297;
+}
+
+.oitem1 {
+    border-radius: 7px;
+    background-color: white;
+    border: 2px solid #888888;
+    padding: 0px;
+    width: 126px;
+    height: 170px;
+    text-align: center;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.oitem1:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.oitem:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.oitem1 img {
+    width: 100px;
+    display: block;
+    margin: 10px auto;
+}
+.tenloai {
+    color: #004973;
+    font-size: 20px;
+}
+
+.tenloai:hover {
+    color: azure;
+}
+
+.oitem p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.play {
+    position: absolute;
+    width:30px; height:30px; border-radius: 50%; border: 1px solid #888888;
+    right: 20px;
+    top: 90px;
+}
+.play:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.footer {
+    height: 100px;
+    background-color: #2FAADF;
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+}
+img.anhconvat {
+    display: block;
+    width: 400px;
+    margin: 20px auto;
+}
+.anhnho img{
+    display: block;
+    width: 70px;
+}
+.tieude {
+    color: #006089;
+    font-weight: bold;
+}
+.phude {
+    font-size: 18px;
+}
+.dacdiem {
+    font-size: 20px;
+    color: #006089;
+}
+.thongtinphanloai td,.thongtinphanloai th {
+    border-bottom: none;
+}
+.thongtinphanloai th {
+    color: #006089;
+    width: 30%;
+    text-align: left;
+}
+.thongtinphanloai {
+    border: 4px solid #2FAADF;
+    border-radius: 10px;
+}
+.bando {
+    width: 300px;
+    display: block;
+    margin: 10px auto;
+}
+.cangiuaanh img{
+    display: block;
+    width: 500px;
+    margin: 20px auto;
+}
+#trothanhcongsu {
+    display: block;
+    margin: 20px auto;
+    margin-bottom: 10px;
+    width: 300px;
+}
+td .cb {
+    display: block;
+    width: 100%;
+}
