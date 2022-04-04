@@ -3,6 +3,8 @@
     margin: 0;
     padding: 0px;
     font-family: Roboto, Helvetica, sans-serif;
+    
+    user-select: none;
 }
 .header{
     height: 72px;
@@ -35,7 +37,6 @@
 }
 .body{
     background-color: #CDEDED;
-    
 }
 .ochua {
     border-radius: 10px;

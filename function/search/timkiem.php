@@ -1,206 +1,205 @@
-<?php
-    if (trim($_GET['keyword'])!="") {
-        $m = explode(" ",$_GET['keyword']); 
-        $search_str = "";
+<div class="" style="padding: 40px;">
+    <div class="row">
+        <div class="col-3" style="padding-left: 40px;">
+            <b class="dacdiem">
+                Lọc kết quả
+                <?php $extra_search_str = ""; ?>
+            </b>
+            <span>(Chọn 1 lựa chọn)</span>
+            <br>
+            <label >
+                <input type="checkbox">
+                    <b>Tất cả</b>
+            </label>
+            <br><hr>
 
-        for($i=0; $i<count($m); $i++) {
-            $word = trim($m[$i]);
-            if($word!="") {
-                $search_str = $search_str." ten_dv like '%".$word."%' or ten_eng like '%".$word."%' or";
+            <b class="dacdiem">
+                Theo giới
+            </b>
+            <br>
+            <?php 
+                //table gioi: ma_gioi,ten_gioi
+                $sql_gioi = $mysqli->query("select * from gioi");
+                
+                while ($result_gioi=$sql_gioi->fetch_array()) {
+                    echo "<label>
+                            <input type='checkbox' name='theo_gioi[]'>
+                                <b>". $result_gioi['ten_gioi'] ."</b>
+                          </label>
+                        <br>";
+                ?>         
+                    <!-- Script get checked values -->
+                    <script>
+                        if (document.getElementByName("theo_gioi[]").checked) {
+                            <?php echo $result_gioi['ten_gioi']."checked"; ?>
+                        }
+                    </script>
+                <?php
+                }
+            ?>
+            <hr>
+
+            <b class="dacdiem">
+                Theo ngành
+            </b>
+            <br>
+            <?php 
+                //table nganh: ma_nganh,ten_nganh
+                $sql_nganh = $mysqli->query("select * from nganh");
+                
+                while ($result_nganh=$sql_nganh->fetch_array()) {
+                    echo "<label>
+                            <input type='checkbox' name='theo_nganh[]'>
+                                <b>". $result_nganh['ten_nganh'] ."</b>
+                          </label>
+                        <br>";
+                }
+            ?>
+            <hr>
+
+            <b class="dacdiem">
+                Theo lớp
+            </b>
+            <br>
+            <?php 
+                //table lop: ma_lop,ten_lop
+                $sql_lop = $mysqli->query("select * from lop");
+                
+                while ($result_lop=$sql_lop->fetch_array()) {
+                    echo "<label>
+                            <input type='checkbox' name='theo_lop[]'>
+                                <b>". $result_lop['ten_lop'] ."</b>
+                          </label>
+                        <br>";
+                }
+            ?>
+            <hr>
+
+            <b class="dacdiem">
+                Theo bộ
+            </b>
+            <br>
+            <?php 
+                //table bo: ma_bo,ten_bo
+                $sql_bo = $mysqli->query("select * from bo");
+                
+                while ($result_bo=$sql_bo->fetch_array()) {
+                    echo "<label>
+                            <input type='checkbox' name='theo_bo[]'>
+                            <b>". $result_bo['ten_bo'] ."</b>
+                          </label>
+                        <br>";
+                }
+            ?>
+            <hr>
+
+            <b class="dacdiem">
+                Theo họ
+            </b>
+            <br>
+            <?php 
+                //table ho: ma_ho,ten_ho
+                $sql_ho = $mysqli->query("select * from ho");
+                
+                while ($result_ho=$sql_ho->fetch_array()) {
+                    echo "<label>
+                            <input type='checkbox' name='theo_ho[]'>
+                                <b>". $result_ho['ten_ho'] ."</b>
+                          </label>
+                        <br>";
+                }
+            ?>
+            <hr>
+        </div>
+
+        <script>
+            var <?php $checked_gioi ?> = $('input[name=theo_gioi]:checked');
+            
+        </script>
+
+        <!-- Result -->
+        <?php
+            if (trim($_GET['keyword'])!="") {
+                $m = explode(" ",$_GET['keyword']); 
+                $search_str = "";
+
+                for($i=0; $i<count($m); $i++) {
+                    $word = trim($m[$i]);
+                    if($word!="") {
+                        $search_str = $search_str." ten_dv like '%".$word."%' or ten_eng like '%".$word."%' or";
+                    }
+                }
+
+                //$search_str sẽ thừa 'or' ở cuối, nên ta ghép lại chuỗi và bỏ từ cuối (là từ 'or' bị thừa)
+                $m_2 = explode(" ",$search_str);
+                $search_str_2 = "";
+                
+                //count($m_2)-1 --> bỏ từ "or" ở cuối
+                for($i=0; $i<count($m_2)-1; $i++) {
+                    $search_str_2 = $search_str_2.$m_2[$i]." ";
+                }
+
+                /* Table dongvat: ma_dv,ten_dv,ten_eng,mota,dacdiem,ma_bt_sachdovn,ma_bt_iucn,
+                    sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo */
+                $sql_search = "select * from dongvat where $search_str_2";
+                $search_result = $mysqli->query($sql_search);
             }
-        }
+        ?>
 
-        //$search_str sẽ thừa 'or' ở cuối, nên ta ghép lại chuỗi và bỏ từ cuối (là từ 'or' bị thừa)
-        $m_2 = explode(" ",$search_str);
-        $search_str_2 = "";
-        
-        //count($m_2)-1 --> bỏ từ "or" ở cuối
-        for($i=0; $i<count($m_2)-1; $i++) {
-            $search_str_2 = $search_str_2.$m_2[$i]." ";
-        }
-
-        //Tính toán số sản phẩm để hiển thị theo trang
-        // $so_du_lieu = 15;
-        // $sql = "select count(*)
-        //         from dienthoai
-        //         where $search_str_2";
-        // $sql_1 = $conn->query($sql)->fetch_array();
-        // $so_trang = ceil( $sql_1[0] / $so_du_lieu );
-
-        /* Table dongvat: ma_dv,ten_dv,ten_eng,mota,dacdiem,ma_bt_sachdovn,ma_bt_iucn,
-            sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo */
-        $sql_search = "select * from dongvat where $search_str_2";
-        $search_result = $mysqli->query($sql_search);
-    }
-?>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tìm kiếm nâng cao</title>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="./fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="./main.css">
-</head>
-
-<body>
-    <div class="container-fluid root">
-        <div class="header container-fluid">
-            <a href="" class="text-decoration-none text-white link">My observation</a>
-            <img id="logo" src="./img/logo.png" alt="Logo">
-            <img id="thuonghieu" src="./img/thuonghieu.png" alt="Thương hiệu">&#160;&#160;
-            <form action="" method="POST" style="display: inline-block;"> 
-                <input type="search" class="input_search form-control" placeholder="Nhập tên loài chim cần tìm...">
-                <button type="submit" class="btn search_icon"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div> -->
-
-        <div class="" style="padding: 40px;">
-            <div class="row">
-                <div class="col-3" style="padding-left: 40px;">
-                    <b class="dacdiem">
-                        Lọc kết quả
+        <div class="col-9" style="background-color: #CDEDED; border-radius: 5px; padding: 30px;">
+            <h3 class="dacdiem">
+                <b>
+                    Kết quả tìm kiếm cho:
+                </b>
+                <i>
+                    <b>
+                        <?php echo $_GET['keyword']; echo "<br>"; 
+                        //echo "SQL: ".$search_str_2; ?>
                     </b>
-                    <span>(Chọn 1 lựa chọn)</span>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br><br>
-                    <b class="dacdiem">
-                        Lọc kết quả
-                    </b>
+                </i>
+            </h3>
 
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br><br>
-                    <b class="dacdiem">
+            <?php $count_result = $mysqli->query("select count(*) from dongvat where $search_str_2")->fetch_array(); ?>
 
-                        Lọc kết quả
-                    </b>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br><br>
-                    <b class="dacdiem">
+            <b style="color: red;">
+                (Tìm được <?php echo $count_result[0]; ?> kết quả)
+            </b>
+            <br>
+            <div class="container-fluid d-flex justify-content-start flex-wrap align-item-start"
+                style="padding: 20px;">
 
-                        Lọc kết quả
-                    </b>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                    <br>
-                    <input type="checkbox">
-                    <label for=""><b>Tất cả</b></label>
-                </div>
+                <?php
+                    while ($i = $search_result->fetch_array()) {
+                        $sql_image = "select ten_image from hinhanh where ma_dv='".$i['ma_dv']."' limit 1;";
+                        $image_result = $mysqli->query($sql_image);
 
-                <!-- Result -->
-                <div class="col-9" style="background-color: #CDEDED; border-radius: 5px; padding: 30px;">
-                    <h3 class="dacdiem">
-                        <b>
-                            Kết quả tìm kiếm cho:
-                        </b>
-                        <i>
-                            <b>
-                                <?php echo $_GET['keyword']; echo "<br>";
-                                echo "SQL: ".$search_str_2; ?>
-                            </b>
-                        </i>
-                    </h3>
+                        if (mysqli_num_rows($image_result)==0) {
+                            $image_name = "add.png";
+                        }
+                        else{
+                            $image_result_array = $image_result->fetch_array();
+                            $image_name = "animals/".$image_result_array['ten_image'];
+                        }
 
-                    <?php $count_result = $mysqli->query("select count(*) from dongvat where $search_str_2")->fetch_array(); ?>
-
-                    <b style="color: red;">
-                        (Tìm được <?php echo $count_result[0]; ?> kết quả)
-                    </b>
-                    <br>
-                    <div class="container-fluid d-flex justify-content-start flex-wrap align-item-start"
-                        style="padding: 20px;">
-
-                        <?php
-                            while($i = $search_result->fetch_array()) {
-                                $sql_image = "select ten_image from hinhanh where ma_dv='".$i['ma_dv']."' limit 1;";
-                                $image_result = $mysqli->query($sql_image)->fetch_array();
-
-                                echo "<a href='?route=chitiet&id=".$i['ma_dv']."'>
-                                    <div class='oitem1'>
-                                        <img src='../../img/animals/".$image_result['ten_image']."' alt=''>
-                                        <div style='padding: 5px;'>
-                                            <h6 class=''><b>".$i['ten_dv']."</b></h6>
+                        echo "<div class='oitem1'>
+                                <a href='?route=chitiet&id=".$i['ma_dv']."'>
+                                    <img src='img/$image_name' alt=''>
+                                    <div style='padding: 5px;'>
+                                        <h6 class=''><b>".$i['ten_dv']."</b></h6>
                                     </div>
-                                </a>";
-                            }
-                        ?>
-                        <!-- <div class="oitem1">
-                            <img src="../../img/ech.png" alt="">
-                            <div style="padding: 5px;">
-                                <h6 class=""><b>Squamata Oppel</b></h6>
-                            </div>
-
-                        </div>
-                        <div class="oitem1">
-                            <img src="../../img/ech.png" alt="">
-                            <div style="padding: 5px;">
-                                <h6 class=""><b>Squamata Oppel</b></h6>
-                            </div>
-
-                        </div>
-                        <div class="oitem1">
-                            <img src="../../img/ech.png" alt="">
-                            <div style="padding: 5px;">
-                                <h6 class=""><b>Squamata Oppel</b></h6>
-                            </div>
-
-                        </div>
-                        <div class="oitem1">
-                            <img src="../../img/ech.png" alt="">
-                            <div style="padding: 5px;">
-                                <h6 class=""><b>Squamata Oppel</b></h6>
-                            </div> -->
-
-                        </div>
-                    </div>
-                </div>
+                                </a>
+                            </div>";
+                    }
+                ?>
             </div>
         </div>
-
-<!--         
-        <div class="footer">
-            Đây là Footers
-        </div>
     </div>
-</body>
+</div>
 
-</html> -->
+
+<!-- Xử lý checkbox chỉ chọn 1 -->
+<script>
+    $('input[type="checkbox"]').on('change', function() {
+        $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+    });
+</script>
