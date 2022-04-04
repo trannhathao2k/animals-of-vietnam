@@ -112,6 +112,27 @@
                                 $image_result_array = $image_result->fetch_array();
                                 $image_name = "animals/".$image_result_array['ten_image'];
                             }
+
+                            //Get tinh trang bao ton
+                            $sql_bt_sachdovn = "select ten_bt_sachdovn from baoton_sachdovn where ma_bt_sachdovn='".$delete_render['ma_bt_sachdovn']."';";
+                            $bt_sachdovn_result = $mysqli->query($sql_bt_sachdovn);
+
+                            if (mysqli_num_rows($bt_sachdovn_result)==0) {
+                                $bt_sachdovn_name = "Chưa cập nhật..";
+                            } else {
+                                $bt_sachdovn_result_array = $bt_sachdovn_result->fetch_array();
+                                $bt_sachdovn_name = $bt_sachdovn_result_array[0];
+                            }
+
+                            $sql_bt_iucn = "select ten_bt_iucn from baoton_iucn where ma_bt_iucn='".$delete_render['ma_bt_iucn']."';";
+                            $bt_iucn_result = $mysqli->query($sql_bt_iucn);
+
+                            if (mysqli_num_rows($bt_iucn_result)==0) {
+                                $bt_iucn_name = "Chưa cập nhật..";
+                            } else {
+                                $bt_iucn_result_array = $bt_iucn_result->fetch_array();
+                                $bt_iucn_name = $bt_iucn_result_array[0];
+                            }
                             
                             //Get phanvo
                             $sql_phanbo = "select noiphanbo from phanbo where ma_dv='".$delete_render['ma_dv']."';";
@@ -130,8 +151,8 @@
                             $str_ten_eng        = $delete_render['ten_eng'];
                             $str_mota           = $delete_render['mota'];
                             $str_dacdiem        = $delete_render['dacdiem'];
-                            $str_ma_bt_sachdovn = $delete_render['ma_bt_sachdovn'];
-                            $str_ma_bt_iucn     = $delete_render['ma_bt_iucn'];
+                            $str_bt_sachdovn = $bt_sachdovn_name;
+                            $str_bt_iucn     = $bt_iucn_name;
                             $str_sinhcanh       = $delete_render['sinhcanh'];
                             $str_diadiem        = $delete_render['diadiem'];
                             $MA_DV = $delete_render['ma_dv'];
@@ -142,8 +163,8 @@
                             $str_ten_eng        = strip_tags($str_ten_eng);
                             $str_mota           = strip_tags($str_mota);
                             $str_dacdiem        = strip_tags($str_dacdiem);
-                            $str_ma_bt_sachdovn = strip_tags($str_ma_bt_sachdovn);
-                            $str_ma_bt_iucn     = strip_tags($str_ma_bt_iucn);
+                            $str_bt_sachdovn    = strip_tags($str_bt_sachdovn);
+                            $str_bt_iucn        = strip_tags($str_bt_iucn);
                             $str_sinhcanh       = strip_tags($str_sinhcanh);
                             $str_diadiem        = strip_tags($str_diadiem);
                             $str_phanbo         = strip_tags($str_phanbo);
@@ -167,7 +188,7 @@
                                 $str_phanbo = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
                                 $str_phanbo .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
                             }
-                            
+
                             echo "<tr>
                             <td>
                                 <img src='./img/$image_name' alt='' style='width: 50px; height: 50px'>
@@ -185,10 +206,10 @@
                                 $str_dacdiem
                             </td>
                             <td>
-                                $str_ma_bt_sachdovn
+                                $str_bt_sachdovn
                             </td>
                             <td>
-                                $str_ma_bt_iucn
+                                $str_bt_iucn
                             </td>
                             <td>
                                 $str_sinhcanh
