@@ -3,7 +3,6 @@
         <div class="col-3" style="padding-left: 40px;">
             <b class="dacdiem">
                 Lọc kết quả
-                <?php $extra_search_str = ""; ?>
             </b>
             <span>(Chọn 1 lựa chọn)</span>
             <br>
@@ -112,11 +111,6 @@
             <hr>
         </div>
 
-        <script>
-            var <?php $checked_gioi ?> = $('input[name=theo_gioi]:checked');
-            
-        </script>
-
         <!-- Result -->
         <?php
             if (trim($_GET['keyword'])!="") {
@@ -143,6 +137,8 @@
                     sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo */
                 $sql_search = "select * from dongvat where $search_str_2";
                 $search_result = $mysqli->query($sql_search);
+            } else {
+                $search_str_2 = " ";
             }
         ?>
 
@@ -182,10 +178,10 @@
                         }
 
                         echo "<div class='oitem1'>
-                                <a href='?route=chitiet&id=".$i['ma_dv']."'>
-                                    <img src='img/$image_name' alt=''>
+                                <a class='text-decoration-none' style='color: black;' href='?route=chitiet&id=".$i['ma_dv']."'>
+                                    <img style='width: 110px; height: 95px' src='img/$image_name' alt=''>
                                     <div style='padding: 5px;'>
-                                        <h6 class=''><b>".$i['ten_dv']."</b></h6>
+                                        <h6 style='font-size: 13px; text-align: center;'><b>".$i['ten_dv']."</b></h6>
                                     </div>
                                 </a>
                             </div>";

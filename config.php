@@ -2,7 +2,7 @@
 define("HOST", "localhost");
 define("USER", "root");
 define("PASS", "");
-define("DB", "animalsofvietnam");
+define("DB", "animalsofvietnam02");
 define("ROOT", dirname(__FILE__));
 define("BASE_URL", "http://localhost/");
 

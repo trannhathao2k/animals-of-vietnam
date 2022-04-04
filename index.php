@@ -26,7 +26,7 @@
     <div class="container-fluid root">
         <div class="header container-fluid">
             <a href="./dangnhap.php" class="text-decoration-none text-white link">My observation</a>
-            <a href="?trangchu">
+            <a class='text-decoration-none' href="?trangchu">
                <img id="logo" src="./img/logo.png" alt="Logo">
                 <img id="thuonghieu" src="./img/thuonghieu.png" alt="Thương hiệu">&#160;&#160; 
             </a>
@@ -44,9 +44,12 @@
 
         <!-- Footer -->
         <div class="footer">
-            <li>
+           <pre>
+            ©2022. Đường 3/2, phường Xuân Khánh, quận Ninh Kiều, thành phố Cần Thơ.
+            Email: haob1805856@student.ctu.edu.vn . SDT: 0968892700.
+           </pre> 
                 
-            </li>
+           
         </div>
     </div>
 </body>
