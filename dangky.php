@@ -17,7 +17,10 @@ if(isset($_POST["tk"])&&isset($_POST["mk"])&&isset($_POST["ten"])&&isset($_POST[
     }else{
         (new obvervation)->them($_POST["tk"],$_POST["mk"],$_POST["ten"],$_POST["email"],$_POST["sdt"]);
         //điều hướng đến trang nào mình muốn
-        //header("location:trang.php");
+        header("location:dangnhap.php");
+       
+        //header("refresh:0; url= dangnhap.php");
+                        
     }
 
 }
@@ -86,9 +89,7 @@ if(isset($_POST["tk"])&&isset($_POST["mk"])&&isset($_POST["ten"])&&isset($_POST[
                             <input required name="sdt" type="text" class="form-control" placeholder="Số điện thoại">
                             <br>
                             <input type="submit" value="Đăng ký" style="border: none; width: 100%; background-color: #006089; color: white; padding: 7px;">
-                            <?php
-                                header("refresh:0; url= dangnhap.php");
-                            ?>
+                            
                         </form>
                     </div>
                 </div>
