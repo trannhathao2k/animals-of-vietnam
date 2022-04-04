@@ -1,6 +1,7 @@
 <?php
     include("config.php");
     include("autoload.php");
+    session_start();
     //$mysqli = new mysqli("localhost","root","","animalsofvietnam");
 ?>
 
@@ -19,13 +20,62 @@
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="ajax.js" type="text/javascript"></script>
+
+    <style>
+        .ontop {
+            z-index: 1;
+            position: absolute;
+        }
+        .ontop a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            padding: 15px;
+            display:inline-block;
+        }
+        .ontop ul {
+            display: inline;
+            margin: 0;
+            padding: 0;
+        }
+        .ontop ul li {display: inline-block;}
+        .ontop ul li:hover {background: #555;}
+        .ontop ul li:hover ul {display: block;}
+        .ontop ul li ul {
+            position: absolute;
+            width: 200px;
+            display: none;
+        }
+        .ontop ul li ul li { 
+            background: #555; 
+            display: block; 
+        }
+        .ontop ul li ul li a {display:block !important;} 
+        .ontop ul li ul li:hover {background: #666;}
+    </style>
 </head>
 
 <body>
     <!-- Header -->
     <div class="container-fluid root">
         <div class="header container-fluid">
-            <a href="./dangnhap.php" class="text-decoration-none text-white link">My observation</a>
+            <?php
+                if (!isset($_SESSION['tt_dangnhap'])) {
+                    echo "<div><a href='./dangnhap.php' class='text-decoration-none text-white link'>Đăng nhập</a></div>";
+                } else {
+                    echo "<div class='ontop'>
+                            <ul>
+                                <li><a href=''>My Observation</a>
+                                    <ul>
+                                        <li><a href='?route=capnhatthongtin'>Cập nhật thông tin động vật</a></li>
+                                        <li><a href=''>Thêm thông tin động vật</a></li>
+                                        <li><a href='dangxuat.php'>Đăng xuất: ".$_SESSION['tt_dangnhap']['hoten_ctv']."</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>";
+                }
+            ?>
             <a class='text-decoration-none' href="?trangchu">
                <img id="logo" src="./img/logo.png" alt="Logo">
                 <img id="thuonghieu" src="./img/thuonghieu.png" alt="Thương hiệu">&#160;&#160; 
@@ -46,10 +96,8 @@
         <div class="footer">
            <pre>
             ©2022. Đường 3/2, phường Xuân Khánh, quận Ninh Kiều, thành phố Cần Thơ.
-            Email: haob1805856@student.ctu.edu.vn . SDT: 0968892700.
+            Email: haob1805856@student.ctu.edu.vn. SDT: 0968892700.
            </pre> 
-                
-           
         </div>
     </div>
 </body>

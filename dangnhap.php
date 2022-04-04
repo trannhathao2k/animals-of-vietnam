@@ -2,6 +2,7 @@
 include("config.php");
 include("autoload.php");
 session_start();
+
 if(isset($_POST["ten"])&&isset($_POST["mk"])){
     $data = (new obvervation)->ktDangNhap($_POST["ten"], $_POST["mk"]);
     if(
@@ -10,12 +11,10 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
     else{
         $_SESSION["tt_dangnhap"] = $data;//Đây là biến lưu tất cả thông tin khi đăng nhập thành công
         //điều hướng đến trang nào mình muốn
-        //header("location:trang.php");
+        header("location:index.php");
     }
 
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -66,7 +65,6 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
                                 </h3>
                             </div>
                             <span class="text-danger">
-                                
                                 <?php if(isset($_SESSION["err"])) {echo $_SESSION["err"]; unset($_SESSION["err"]);} ?> 
                                 
                             </span>

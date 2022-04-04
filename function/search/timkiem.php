@@ -138,8 +138,13 @@
                 $sql_search = "select * from dongvat where $search_str_2";
                 $search_result = $mysqli->query($sql_search);
             } else {
-                $search_str_2 = " ";
-            }
+                $search_str_2 = "ten_dv ='@@@@'";  //Cho từ sai để ko tìm được
+
+                /* Table dongvat: ma_dv,ten_dv,ten_eng,mota,dacdiem,ma_bt_sachdovn,ma_bt_iucn,
+                    sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo */
+                $sql_search = "select * from dongvat where $search_str_2";
+                $search_result = $mysqli->query($sql_search);
+        }
         ?>
 
         <div class="col-9" style="background-color: #CDEDED; border-radius: 5px; padding: 30px;">
@@ -155,37 +160,45 @@
                 </i>
             </h3>
 
-            <?php $count_result = $mysqli->query("select count(*) from dongvat where $search_str_2")->fetch_array(); ?>
-
             <b style="color: red;">
-                (Tìm được <?php echo $count_result[0]; ?> kết quả)
+                <?php 
+                    $count_result = $mysqli->query("select count(*) from dongvat where $search_str_2")->fetch_array();
+                    if ($count_result[0]==0) {
+                        echo "(Không tìm được kết quả phù hợp!)";
+                    } else {
+                        echo "(Tìm được ".$count_result[0]." kết quả)";
+                    }
+                ?>
             </b>
             <br>
             <div class="container-fluid d-flex justify-content-start flex-wrap align-item-start"
                 style="padding: 20px;">
 
                 <?php
-                    while ($i = $search_result->fetch_array()) {
-                        $sql_image = "select ten_image from hinhanh where ma_dv='".$i['ma_dv']."' limit 1;";
-                        $image_result = $mysqli->query($sql_image);
-
-                        if (mysqli_num_rows($image_result)==0) {
-                            $image_name = "add.png";
+                    if (mysqli_num_rows($search_result)!=0) {
+                        while ($i = $search_result->fetch_array()) {
+                            $sql_image = "select ten_image from hinhanh where ma_dv='".$i['ma_dv']."' limit 1;";
+                            $image_result = $mysqli->query($sql_image);
+    
+                            if (mysqli_num_rows($image_result)==0) {
+                                $image_name = "add.png";
+                            }
+                            else{
+                                $image_result_array = $image_result->fetch_array();
+                                $image_name = "animals/".$image_result_array['ten_image'];
+                            }
+    
+                            echo "<div class='oitem1'>
+                                    <a class='text-decoration-none' style='color: black;' href='?route=chitiet&id=".$i['ma_dv']."'>
+                                        <img style='width: 110px; height: 95px' src='img/$image_name' alt=''>
+                                        <div style='padding: 5px;'>
+                                            <h6 style='font-size: 13px; text-align: center;'><b>".$i['ten_dv']."</b></h6>
+                                        </div>
+                                    </a>
+                                </div>";
                         }
-                        else{
-                            $image_result_array = $image_result->fetch_array();
-                            $image_name = "animals/".$image_result_array['ten_image'];
-                        }
-
-                        echo "<div class='oitem1'>
-                                <a class='text-decoration-none' style='color: black;' href='?route=chitiet&id=".$i['ma_dv']."'>
-                                    <img style='width: 110px; height: 95px' src='img/$image_name' alt=''>
-                                    <div style='padding: 5px;'>
-                                        <h6 style='font-size: 13px; text-align: center;'><b>".$i['ten_dv']."</b></h6>
-                                    </div>
-                                </a>
-                            </div>";
-                    }
+                    } 
+                    
                 ?>
             </div>
         </div>

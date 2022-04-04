@@ -15,6 +15,14 @@
             include("function/detail/chitiet.php");
             break;
 
+        case "capnhatthongtin":
+            include("capnhat.php");
+            break;
+
+        case "suathongtin":
+            include("sua.php");
+            break;
+
         case "trangchu":
             include("trangchu.php");
 

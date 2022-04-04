@@ -41,6 +41,7 @@
 }
 .ochua {
     border-radius: 10px;
+    min-height: 500px;
     background-color: white;
 }
 .cb {

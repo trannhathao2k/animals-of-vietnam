@@ -86,26 +86,24 @@
                 <div class="container-fluid d-flex justify-content-start flex-wrap align-item-start">                  
                     
                         <?php
-                                $sql_animal = "SELECT * FROM hinhanh_index, dongvat
-                                        WHERE dongvat.ma_dv = hinhanh_index.ma_dv;";
-                                $query_animal = mysqli_query($mysqli,$sql_animal);
-                                while($row_animal = mysqli_fetch_array($query_animal)) {
-                                ?>
-                                <div class="oitem1">
-                                        <a href="?route=chitiet&id=<?php echo $row_animal['ma_dv'] ?>">
-                                            <img src="./img/animals/<?php echo $row_animal['ten_image_index'] ?>" width="50px" alt="<?php echo $row_animal['ten_image_index'] ?>">
-                                            <div style="padding: 5px;" class="tendv">
-                                                <h6 class="tendv">
-                                                    <?php echo $row_animal['ten_dv'] ?>
-                                                </h6>
-                                            </div>
-                                        </a>
-                                </div>
-                                <?php
-                                }
+                            $sql_animal = "SELECT * FROM hinhanh_index, dongvat
+                                    WHERE dongvat.ma_dv = hinhanh_index.ma_dv;";
+                            $query_animal = mysqli_query($mysqli,$sql_animal);
+                            while($row_animal = mysqli_fetch_array($query_animal)) {
                             ?>
-
-                    
+                            <div class="oitem1">
+                                    <a class="text-decoraton-none" href="?route=chitiet&id=<?php echo $row_animal['ma_dv'] ?>">
+                                        <img src="./img/animals/<?php echo $row_animal['ten_image_index'] ?>" width="50px" alt="<?php echo $row_animal['ten_image_index'] ?>">
+                                        <div style="padding: 5px;" class="tendv">
+                                            <h6 class="tendv">
+                                                <?php echo $row_animal['ten_dv'] ?>
+                                            </h6>
+                                        </div>
+                                    </a>
+                            </div>
+                            <?php
+                            }
+                        ?>
                 </div>
             </div>
         </div>

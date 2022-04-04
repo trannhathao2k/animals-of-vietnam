@@ -8,7 +8,7 @@ define("BASE_URL", "http://localhost/");
 
 $mysqli = new mysqli(HOST, USER, PASS, DB);
 if ($mysqli->connect_error) {
-    die("Kết nối CSDL thất bại!<br>--> ".$mysqli->connect_error);
+    die("Kết nối CSDL thất bại!<br>--> ".$mysqli->connect_error."<br>");
     exit();
 }
 ?>
