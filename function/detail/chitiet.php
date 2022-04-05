@@ -16,15 +16,22 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                 <?php
                     $sql_anh = "SELECT ten_image FROM hinhanh WHERE ma_dv='$_GET[id]'";
                     $query_anh = mysqli_query($mysqli, $sql_anh);
-                    $row_anh = mysqli_fetch_array($query_anh);
+                    
 
-                    foreach ($row_anh as $element) {
-                    ?>
-                <img src="./img/animals/<?php echo $row_anh['ten_image'] ?>">
-                <?php
+                    if (mysqli_num_rows($query_anh)==0) {
+                        ?>
+                            <img src="./img/add.png">
+                        <?php
                     }
-
-                    ?>
+                    else{
+                        $row_anh = mysqli_fetch_array($query_anh);
+                        foreach ($row_anh as $element) {
+                            ?>
+                                <img src="./img/animals/<?php echo $row_anh['ten_image'] ?>">
+                            <?php
+                        }
+                    }
+                ?>
             </div>
             <div style="background-color: #E9FEFE; margin: 0px 10px 10px 10px; padding: 5px;" class="text-center">
                 Ảnh được thêm bởi <a href="">&#169;Nguyễn Quang Cường</a>

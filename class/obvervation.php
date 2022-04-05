@@ -24,6 +24,47 @@ class obvervation extends DB{
         $sql = "update obvervation set passwd='$mk' where email_ctv='$e'";
         $this->query($sql);
     }
+
+    function execute($sql) {
+        $this->query($sql);
+    }
+
+    function NotificationAndGoto($notification_str, $goto) {
+        ?>
+            <html>
+                <head>
+                    <meta charset="utf-8">
+                    <title>Thông báo</title>
+                </head>
+
+                <body>
+                    <script type="text/javascript">
+                        alert("<?php echo $notification_str; ?>");
+                        window.location = "<?php echo $goto; ?>";
+                    </script>
+                </body>
+            </html>
+        <?php
+        exit();
+    }  
+    function NotificationAndGoback($notification_str) {
+        ?>
+            <html>
+                <head>
+                    <meta charset="utf-8">
+                    <title>Thông báo</title>
+                </head>
+
+                <body>
+                    <script type="text/javascript">
+                        alert("<?php echo $notification_str; ?>");
+                        window.history.back();
+                    </script>
+                </body>
+            </html>
+        <?php
+        exit();
+    }  
 }
 
 ?>

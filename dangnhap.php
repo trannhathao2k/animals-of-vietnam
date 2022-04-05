@@ -66,7 +66,6 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
                             </div>
                             <span class="text-danger">
                                 <?php if(isset($_SESSION["err"])) {echo $_SESSION["err"]; unset($_SESSION["err"]);} ?> 
-                                
                             </span>
                             <input required name="ten" type="text" class="form-control" placeholder="Tên tài khoản">
                             <br>

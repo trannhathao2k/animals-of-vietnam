@@ -6,27 +6,41 @@
         $route = "";
     }
 
+    //Cần refresh lại trang để title hiển thị đúng
+
     switch($route) {
         case "timkiem":
-            include("function/search/timkiem.php");
+            $title = "Tìm kiếm";
+            include("function/search/timkiem.php"); 
             break;
 
         case "chitiet":
-            include("function/detail/chitiet.php");
+            $_SESSION['Title'] = "Chi tiết";
+            include("function/detail/chitiet.php");            
             break;
 
         case "capnhatthongtin":
-            include("capnhat.php");
+            $_SESSION['Title'] = "Cập nhật thông tin";
+            include("capnhat.php");            
             break;
 
         case "suathongtin":
-            include("sua.php");
+            $_SESSION['Title'] = "Sửa thông tin";
+            include("sua.php");            
+            break;
+
+        case "themthongtin":
+            $_SESSION['Title'] = "Thêm thông tin";
+            include("function/add/them.php");            
             break;
 
         case "trangchu":
-            include("trangchu.php");
+            $_SESSION['Title'] = "Trang chủ";
+            include("trangchu.php");            
+            break;
 
         default:
-            include("trangchu.php");
+            $_SESSION['Title'] = "Trang chủ";
+            include("trangchu.php");            
     }
 ?>

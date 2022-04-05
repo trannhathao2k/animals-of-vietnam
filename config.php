@@ -4,7 +4,7 @@ define("USER", "root");
 define("PASS", "");
 define("DB", "animalsofvietnam02");
 define("ROOT", dirname(__FILE__));
-define("BASE_URL", "http://localhost/");
+define("BASE_URL", "http://localhost/".ROOT."/");
 
 $mysqli = new mysqli(HOST, USER, PASS, DB);
 if ($mysqli->connect_error) {
