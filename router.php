@@ -26,7 +26,7 @@
 
         case "suathongtin":
             $_SESSION['Title'] = "Sửa thông tin";
-            include("function/update/sua.php");            
+            include("function/update/sua2.php");            
             break;
 
         case "themthongtin":

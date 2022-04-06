@@ -64,7 +64,7 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
             <p>
                 <?php
                     $sql_baoton_sachdovn = "SELECT * FROM dongvat, baoton_sachdovn
-                            WHERE dongvat.ma_bt_sachdovn = baoton_sachdovn.ma_bt_sachdovn";
+                            WHERE dongvat.ma_bt_sachdovn = baoton_sachdovn.ma_bt_sachdovn and dongvat.ma_dv='".$row_chitiet['ma_dv']."'";
                     $query_bt_sachdovn = mysqli_query($mysqli, $sql_baoton_sachdovn);
                     $row_bt_sachdovn = mysqli_fetch_array($query_bt_sachdovn);
                     echo $row_bt_sachdovn['ten_bt_sachdovn'];

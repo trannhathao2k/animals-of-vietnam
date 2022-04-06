@@ -1,3 +1,6 @@
+<?php
+    $chitiet_dv = $mysqli->query("select * from dongvat,hinhanh where dongvat.ma_dv=hinhanh.ma_dvdongvat.ma_dv='$_GET[id]' limit 1")->fetch_array();
+?>
 <form action="function/add/action_them.php" method="POST" enctype="multipart/form-data">
     <div class="container-fluid p-4">
         <div class="row">

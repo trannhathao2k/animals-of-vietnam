@@ -26,6 +26,17 @@
     if (isset($_POST['xoa_MA_DV']) and isset($_POST['xoa_TEN_DV'])) {
         $sql_xoa_ctv = "delete from themdongvat where ma_dv='".$_POST['xoa_MA_DV']."';";
             $mysqli->query($sql_xoa_ctv);
+
+        $sql_get_ten_image = "select ten_image from hinhanh where ma_dv='".$_POST['xoa_MA_DV']."';";
+        $ten_image = $mysqli->query($sql_get_ten_image)->fetch_array();
+        $ten_file_image = "../../img/animals/".$ten_image[0];
+        if (file_exists($ten_file_image)) {
+            unlink($ten_file_image);
+        }
+
+        $sql_xoa_phanbo = "delete from phanbo where ma_dv='".$_POST['xoa_MA_DV']."';";
+            $mysqli->query($sql_xoa_phanbo);
+        
         $sql_xoa_hinh_anh = "delete from hinhanh where ma_dv='".$_POST['xoa_MA_DV']."';";
             $mysqli->query($sql_xoa_hinh_anh);
         $sql_xoa_dongvat = "delete from dongvat where ma_dv='".$_POST['xoa_MA_DV']."';";

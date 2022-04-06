@@ -31,11 +31,11 @@
     $phanbo = $_POST['phanbo'];
     $phanbo = str_replace("'", "&#39;", $phanbo);
 
-    $ma_gioi = $_SESSION['ma_gioi'];
-    $ma_nganh = $_SESSION['ma_nganh'];
-    $ma_lop = $_SESSION['ma_lop'];
-    $ma_ho = $_SESSION['ma_ho'];
-    $ma_bo = $_SESSION['ma_bo'];
+    $ma_gioi = $_POST['gioi'];
+    $ma_nganh = $_POST['nganh'];
+    $ma_lop = $_POST['lop'];
+    $ma_ho = $_POST['ho'];
+    $ma_bo = $_POST['bo'];
 
     $ten_file_anh_1 = $_FILES['hinh_anh_1']['name'];
     $ten_file_anh_2 = $_FILES['hinh_anh_2']['name'];
@@ -51,9 +51,9 @@
                             if ($phanbo!="") {
                                 //Kiểm tra trùng tên
                                 $duplicate_sql = "select * from dongvat where ten_dv='$ten_dv' or ten_eng='$ten_eng';";
-                                $duplicate_check = $mysqli->query($duplicate_sql)->fetch_array();
+                                $duplicate_check = $mysqli->query($duplicate_sql);
 
-                                if ($duplicate_check[0]==0 or $duplicate_check[0]==null) {
+                                if (mysqli_num_rows($duplicate_check)==0) {
                                     /* Table dongvat: ma_dv,ten_dv,ten_eng,mota,dacdiem,ma_bt_sachdovn,ma_bt_iucn,sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo */
                                     $add_sql = "insert into dongvat value(null,'$ten_dv','$ten_eng','$mota','$dacdiem','$ma_bt_sachdovn','$ma_bt_iucn','$sinhcanh','$diadiem','$ma_gioi','$ma_nganh','$ma_lop','$ma_ho','$ma_bo');";
                                     $mysqli->query($add_sql);
@@ -92,12 +92,14 @@
                                         move_uploaded_file($_FILES['hinh_anh_4']['tmp_name'],$link_anh_4);
                                     }
 
+                                    //Table phanbo: ma_pb,noiphanbo,ma_dv
+                                    $mysqli->query("insert into phanbo value(null,'$phanbo','$get_ma_dv_result');");
+
                                     //Ghi nhận vào bảng themdongvat
                                     //table themdongvat: ma_ctv,ma_dv
                                     $mysqli->query("insert into themdongvat value('$ma_ctv','$get_ma_dv_result');");
 
                                     (new obvervation)->NotificationAndGoto("Đã thêm, quay về trang chủ!","?route=trangchu");
-
                                 } else {$_SESSION["err"] = "Trùng tên động vật có sẵn!";}
                             } else {$_SESSION["err"] = "Chưa nhập phân bố!";}
                         } else {$_SESSION["err"] = "Chưa nhập địa điểm!";}
@@ -109,7 +111,7 @@
 
     if(isset($_SESSION["err"])) {
         $notification = $_SESSION["err"]; unset($_SESSION["err"]);
-        (new obvervation)->NotificationAndGoback($notification);
-        
+        echo $notification;
+        //(new obvervation)->NotificationAndGoback($notification);
     }
 ?>
