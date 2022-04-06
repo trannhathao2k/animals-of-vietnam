@@ -21,17 +21,22 @@
 
         case "capnhatthongtin":
             $_SESSION['Title'] = "Cập nhật thông tin";
-            include("capnhat.php");            
+            include("function/update/capnhat.php");            
             break;
 
         case "suathongtin":
             $_SESSION['Title'] = "Sửa thông tin";
-            include("sua.php");            
+            include("function/update/sua.php");            
             break;
 
         case "themthongtin":
             $_SESSION['Title'] = "Thêm thông tin";
             include("function/add/them.php");            
+            break;
+
+        case "testcode":
+            $_SESSION['Title'] = "Test Code";
+            include("testcode.php");            
             break;
 
         case "trangchu":

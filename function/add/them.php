@@ -57,6 +57,21 @@
                         }
                     };
                 </script>
+                
+                
+                <div id="drag-drop-area"></div> 
+                <script>
+                    var uppy = Uppy.Core()
+                        .use(Uppy.Dashboard, {
+                        inline: true,
+                        target: '#drag-drop-area'
+                        })
+                        .use(Uppy.Tus, {endpoint: 'https://master.tus.io/files/'}) //you can put upload URL here, where you want to upload images
+
+                    uppy.on('complete', (result) => {
+                        console.log('Upload complete! We’ve uploaded these files:', result.successful)
+                    })
+                </script>
             </div>
             <div class="col-5" style="padding: 20px; background-color: #CDEDED; margin-top: 20px; border-radius: 5px;">
                 <h4 class="dacdiem">

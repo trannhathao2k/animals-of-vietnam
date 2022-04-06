@@ -19,11 +19,8 @@
     $dacdiem = $_POST['dacdiem'];
     $dacdiem = str_replace("'", "&#39;", $dacdiem);
 
-    $ma_bt_sachdovn = $_SESSION['ma_bt_sachdovn'];
-    $ma_bt_iucn = $_SESSION['ma_bt_iucn'];
-    echo $_SESSION['ma_bt_sachdovn'];
-    echo $ma_bt_sachdovn;
-    echo $ma_bt_iucn;
+    $ma_bt_sachdovn = $_POST['bt_sachdovn'];
+    $ma_bt_iucn = $_POST['bt_iucn'];
 
     $sinhcanh = $_POST['sinhcanh'];
     $sinhcanh = str_replace("'", "&#39;", $sinhcanh);
@@ -45,74 +42,74 @@
     $ten_file_anh_3 = $_FILES['hinh_anh_3']['name'];
     $ten_file_anh_4 = $_FILES['hinh_anh_4']['name'];
 
-    // if ($ten_dv!="") {
-    //     if ($ten_eng!="") {
-    //         if ($mota!="") {
-    //             if ($dacdiem!="") {
-    //                 if ($sinhcanh!="") {
-    //                     if ($diadiem!="") {
-    //                         if ($phanbo!="") {
-    //                             //Kiểm tra trùng tên
-    //                             $duplicate_sql = "select * from dongvat where ten_dv='$ten_dv' or ten_eng='$ten_eng';";
-    //                             $duplicate_check = $mysqli->query($duplicate_sql)->fetch_array();
+    if ($ten_dv!="") {
+        if ($ten_eng!="") {
+            if ($mota!="") {
+                if ($dacdiem!="") {
+                    if ($sinhcanh!="") {
+                        if ($diadiem!="") {
+                            if ($phanbo!="") {
+                                //Kiểm tra trùng tên
+                                $duplicate_sql = "select * from dongvat where ten_dv='$ten_dv' or ten_eng='$ten_eng';";
+                                $duplicate_check = $mysqli->query($duplicate_sql)->fetch_array();
 
-    //                             if ($duplicate_check[0]==0 or $duplicate_check[0]==null) {
-    //                                 /* Table dongvat: ma_dv,ten_dv,ten_eng,mota,dacdiem,ma_bt_sachdovn,ma_bt_iucn,sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo */
-    //                                 $add_sql = "insert into dongvat value(null,'$ten_dv','$ten_eng','$mota','$dacdiem','$ma_bt_sachdovn','$ma_bt_iucn','$sinhcanh','$diadiem','$ma_gioi','$ma_nganh','$ma_lop','$ma_ho','$ma_bo');";
-    //                                 $mysqli->query($add_sql);
+                                if ($duplicate_check[0]==0 or $duplicate_check[0]==null) {
+                                    /* Table dongvat: ma_dv,ten_dv,ten_eng,mota,dacdiem,ma_bt_sachdovn,ma_bt_iucn,sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo */
+                                    $add_sql = "insert into dongvat value(null,'$ten_dv','$ten_eng','$mota','$dacdiem','$ma_bt_sachdovn','$ma_bt_iucn','$sinhcanh','$diadiem','$ma_gioi','$ma_nganh','$ma_lop','$ma_ho','$ma_bo');";
+                                    $mysqli->query($add_sql);
 
-    //                                 //Thêm ảnh
-    //                                 $get_ma_dv = $mysqli->query("select ma_dv from dongvat order by ma_dv desc;")->fetch_array();
-    //                                 $get_ma_dv_result = $get_ma_dv[0];
+                                    //Thêm ảnh
+                                    $get_ma_dv = $mysqli->query("select ma_dv from dongvat order by ma_dv desc;")->fetch_array();
+                                    $get_ma_dv_result = $get_ma_dv[0];
 
-    //                                 //table hinhanh: ma_image,ten_image,ma_dv
-    //                                 if ($ten_file_anh_1!="") {
-    //                                     $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_1','$get_ma_dv_result');");
+                                    //table hinhanh: ma_image,ten_image,ma_dv
+                                    if ($ten_file_anh_1!="") {
+                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_1','$get_ma_dv_result');");
 
-    //                                     //Thêm file ảnh đã tải lên
-    //                                     $link_anh_1 = "../../img/animals/".$ten_file_anh_1;
-    //                                     move_uploaded_file($_FILES['hinh_anh_1']['tmp_name'],$link_anh_1);
-    //                                 }
-    //                                 if ($ten_file_anh_2!="") {
-    //                                     $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_2','$get_ma_dv_result');");
+                                        //Thêm file ảnh đã tải lên
+                                        $link_anh_1 = "../../img/animals/".$ten_file_anh_1;
+                                        move_uploaded_file($_FILES['hinh_anh_1']['tmp_name'],$link_anh_1);
+                                    }
+                                    if ($ten_file_anh_2!="") {
+                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_2','$get_ma_dv_result');");
 
-    //                                     //Thêm file ảnh đã tải lên
-    //                                     $link_anh_2 = "../../img/animals/".$ten_file_anh_2;
-    //                                     move_uploaded_file($_FILES['hinh_anh_2']['tmp_name'],$link_anh_2);
-    //                                 }
-    //                                 if ($ten_file_anh_3!="") {
-    //                                     $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_3','$get_ma_dv_result');");
+                                        //Thêm file ảnh đã tải lên
+                                        $link_anh_2 = "../../img/animals/".$ten_file_anh_2;
+                                        move_uploaded_file($_FILES['hinh_anh_2']['tmp_name'],$link_anh_2);
+                                    }
+                                    if ($ten_file_anh_3!="") {
+                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_3','$get_ma_dv_result');");
 
-    //                                     //Thêm file ảnh đã tải lên
-    //                                     $link_anh_3 = "../../img/animals/".$ten_file_anh_3;
-    //                                     move_uploaded_file($_FILES['hinh_anh_3']['tmp_name'],$link_anh_3);
-    //                                 }
-    //                                 if ($ten_file_anh_4!="") {
-    //                                     $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_4','$get_ma_dv_result');");
+                                        //Thêm file ảnh đã tải lên
+                                        $link_anh_3 = "../../img/animals/".$ten_file_anh_3;
+                                        move_uploaded_file($_FILES['hinh_anh_3']['tmp_name'],$link_anh_3);
+                                    }
+                                    if ($ten_file_anh_4!="") {
+                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_4','$get_ma_dv_result');");
 
-    //                                     //Thêm file ảnh đã tải lên
-    //                                     $link_anh_4 = "../../img/animals/".$ten_file_anh_4;
-    //                                     move_uploaded_file($_FILES['hinh_anh_4']['tmp_name'],$link_anh_4);
-    //                                 }
+                                        //Thêm file ảnh đã tải lên
+                                        $link_anh_4 = "../../img/animals/".$ten_file_anh_4;
+                                        move_uploaded_file($_FILES['hinh_anh_4']['tmp_name'],$link_anh_4);
+                                    }
 
-    //                                 //Ghi nhận vào bảng themdongvat
-    //                                 //table themdongvat: ma_ctv,ma_dv
-    //                                 $mysqli->query("insert into themdongvat value('$ma_ctv','$get_ma_dv_result');");
+                                    //Ghi nhận vào bảng themdongvat
+                                    //table themdongvat: ma_ctv,ma_dv
+                                    $mysqli->query("insert into themdongvat value('$ma_ctv','$get_ma_dv_result');");
 
-    //                                 (new obvervation)->NotificationAndGoto("Đã thêm, quay về trang chủ!","?route=trangchu");
+                                    (new obvervation)->NotificationAndGoto("Đã thêm, quay về trang chủ!","?route=trangchu");
 
-    //                             } else {$_SESSION["err"] = "Trùng tên động vật có sẵn!";}
-    //                         } else {$_SESSION["err"] = "Chưa nhập phân bố!";}
-    //                     } else {$_SESSION["err"] = "Chưa nhập địa điểm!";}
-    //                 } else {$_SESSION["err"] = "Chưa nhập sinh cảnh!";}
-    //             } else {$_SESSION["err"] = "Chưa nhập đặc điểm!";}
-    //         } else {$_SESSION["err"] = "Chưa nhập mô tả!";}
-    //     } else {$_SESSION["err"] = "Chưa nhập tên khoa học!";}
-    // } else {$_SESSION["err"] = "Chưa nhập tên động vật!";}
+                                } else {$_SESSION["err"] = "Trùng tên động vật có sẵn!";}
+                            } else {$_SESSION["err"] = "Chưa nhập phân bố!";}
+                        } else {$_SESSION["err"] = "Chưa nhập địa điểm!";}
+                    } else {$_SESSION["err"] = "Chưa nhập sinh cảnh!";}
+                } else {$_SESSION["err"] = "Chưa nhập đặc điểm!";}
+            } else {$_SESSION["err"] = "Chưa nhập mô tả!";}
+        } else {$_SESSION["err"] = "Chưa nhập tên khoa học!";}
+    } else {$_SESSION["err"] = "Chưa nhập tên động vật!";}
 
-    // if(isset($_SESSION["err"])) {
-    //     $notification = $_SESSION["err"]; unset($_SESSION["err"]);
-    //     (new obvervation)->NotificationAndGoback($notification);
+    if(isset($_SESSION["err"])) {
+        $notification = $_SESSION["err"]; unset($_SESSION["err"]);
+        (new obvervation)->NotificationAndGoback($notification);
         
-    // }
+    }
 ?>
