@@ -39,11 +39,23 @@
 .body{
     background-color: #CDEDED;
 }
-.ochua {
+.ochua1 {
     border-radius: 10px;
-    min-height: 500px;
     background-color: white;
 }
+
+.ochua2 {
+    border-radius: 10px;
+    background-color: white;
+    min-height: 500px;
+}
+
+.anh-index {
+    display: block;
+    height: 100px;
+    width: 100px;
+}
+
 .cb {
     padding: 7px;
     color: #888888;
@@ -62,6 +74,7 @@
     color: black;
     text-decoration: none;
 }
+
 
 .oitem {
     border-radius: 7px;
@@ -137,14 +150,16 @@
     margin-top: 15px;
     font-size: 16px;
 }
-img.anhconvat {
+img .anhconvat {
     display: block;
     width: 400px;
+    height: 400px;
     margin: 20px auto;
 }
 .anhnho img{
     display: block;
     width: 70px;
+    height: 70px;
 }
 .tieude {
     color: #006089;

@@ -77,7 +77,10 @@ if(isset($_POST["mk"])&&isset($_POST["r_mk"])){
             </div>
         </div>
         <div class="footer">
-            Đây là Footers
+        <pre>
+            ©2022. Đường 3/2, phường Xuân Khánh, quận Ninh Kiều, thành phố Cần Thơ.
+            Email: haob1805856@student.ctu.edu.vn. SDT: 0968892700.
+           </pre>
         </div>
     </div>
 </body>

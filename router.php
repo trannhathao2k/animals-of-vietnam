@@ -16,7 +16,7 @@
 
         case "chitiet":
             $_SESSION['Title'] = "Chi tiết";
-            include("function/detail/chitiet.php");            
+            include("chitiet.php");            
             break;
 
         case "capnhatthongtin":
@@ -45,7 +45,7 @@
             break;
 
         default:
-            $_SESSION['Title'] = "Trang chủ";
+            $_SESSION['Title'] = "Animals of VietNam - Trang tìm hiểu động vật Việt Nam";
             include("trangchu.php");            
     }
 ?>

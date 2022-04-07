@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $_SESSION['Title']; ?></title>
+    <title>Animals Of VietNam - Trang tìm hiểu động vật Việt Nam</title>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
     <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./fontawesome/css/all.min.css">
@@ -64,7 +64,7 @@
         <div class="header container-fluid">
             <?php
                 if (!isset($_SESSION['tt_dangnhap'])) {
-                    echo "<div><a href='./dangnhap.php' class='text-decoration-none text-white link'>Đăng nhập</a></div>";
+                    echo "<div><a href='./dangnhap.php' class='text-decoration-none text-white link'>My Observation</a></div>";
                 } else {
                     echo "<div class='ontop'>
                             <ul>

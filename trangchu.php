@@ -1,14 +1,28 @@
 <div class="container-fluid body py-3 px-5">
-            <div class="container-fluid p-3 ochua" style="position: relative;">
+            <div class="container-fluid p-3 ochua1" style="position: relative;">
                 <form action="#" method="POST">
                     <span><b>Phân loại học</b></span>&#160;
-                    <select name="phanloai" class="cb" onchange="genderChanged(this)">
+                    <select name="phanloai" class="cb" onchange="showHint(this.value)">
                         <option value="gioi">Giới</option>
                         <option value="nganh">Ngành</option>
                         <option value="lop">Lớp</option>
                         <option value="bo">Bộ</option>
                         <option value="ho">Họ</option>
                     </select>
+                    <script>
+                        function showHint(value) {
+
+                            var xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    document.getElementById("kq").innerHTML =(this.responseText); //=>kết quả trả về thêm vào element này, có html vẫn hiện được
+                                }
+                            };
+                            xmlhttp.open("GET", "getdata.php?bang=" + value, true);
+                            xmlhttp.send();
+
+                        }
+                    </script>
                 </form>
 
                 <br>
@@ -67,12 +81,13 @@
                         ?>
             </div>
             </div>
-            <div class="container-fluid p-3 px-5 ochua mt-3" style="position: relative;">
+            <div class="container-fluid p-3 px-5 ochua2 mt-3" style="position: relative;">
                 <span><b>Ưu tiên xem</b></span>&#160;
                 <select class="cb">
-                    <option value="quantamnhieu">Quan tam nhieu</option>
-                    <option value="moinhat">Moi nhat</option>
-                    <option value="cunhat">Cu nhat</option>
+                    
+                    <option value="moinhat">Mới nhất</option>
+                    <option value="cunhat">Cũ nhất</option>
+                    <option value="iucn">Bảo tồn IUCN</option>
                 </select>
                 <br><br>
                 <?php
@@ -93,7 +108,7 @@
                             ?>
                             <div class="oitem1">
                                     <a class="text-decoraton-none" href="?route=chitiet&id=<?php echo $row_animal['ma_dv'] ?>">
-                                        <img src="./img/animals/<?php echo $row_animal['ten_image_index'] ?>" width="50px" alt="<?php echo $row_animal['ten_image_index'] ?>">
+                                        <img class="anh-index" src="./img/animals/<?php echo $row_animal['ten_image_index'] ?>" width="50px" alt="<?php echo $row_animal['ten_image_index'] ?>">
                                         <div style="padding: 5px;" class="tendv">
                                             <h6 class="tendv">
                                                 <?php echo $row_animal['ten_dv'] ?>
