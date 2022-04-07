@@ -7,7 +7,7 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
 <div class="container-fluid p-4">
     <div class="row">
         <div class="col-4">
-            <div>
+            <div class="anhconvat">
                 <?php
                     if(isset($_GET['anh'])) {
                         $anh = $_GET['anh'];
@@ -16,7 +16,7 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                         $anh = $row_chitiet['ten_image'];
                     }
                 ?>
-                <img class="anhconvat" src="./img/animals/<?php echo $anh ?>"
+                <img src="./img/animals/<?php echo $anh ?>"
                     alt="anhdongvat">
             </div>
             <div class="d-flex flex-wrap justify-content-around anhnho"
