@@ -31,40 +31,19 @@ class obvervation extends DB{
 
     function NotificationAndGoto($notification_str, $goto) {
         ?>
-            <html>
-                <head>
-                    <meta charset="utf-8">
-                    <title>Thông báo</title>
-                </head>
-
-                <body>
-                    <script type="text/javascript">
-                        alert("<?php echo $notification_str; ?>");
-                        window.location = "<?php echo $goto; ?>";
-                    </script>
-                </body>
-            </html>
+            <script type="text/javascript">
+                alert("<?php echo $notification_str; ?>");
+                window.location = "<?php echo $goto; ?>";
+            </script>
         <?php
-        exit();
     }  
     function NotificationAndGoback($notification_str) {
         ?>
-            <html>
-                <head>
-                    <meta charset="utf-8">
-                    <title>Thông báo</title>
-                </head>
-
-                <body>
-                    <script type="text/javascript">
-                        alert("<?php echo $notification_str; ?>");
-                        window.history.back();
-                    </script>
-                </body>
-            </html>
+            <script type="text/javascript">
+                alert("<?php echo $notification_str; ?>");
+                window.history.back();
+            </script>
         <?php
-        exit();
     }  
 }
-
 ?>

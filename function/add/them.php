@@ -114,26 +114,15 @@
                 </h4>
                     <select name="bt_sachdovn" id="" class="cb">
                         <?php
-                            if(!isset($_SESSION['ma_bt_sachdovn'])) {
-                                $_SESSION['ma_bt_sachdovn']="";
-                            }
-
-                            //ma_bt_sachdovn,ten_bt_sachdovn
+                            -//ma_bt_sachdovn,ten_bt_sachdovn
                             $bt_sachdovn_result = $mysqli->query("select * from baoton_sachdovn order by ma_bt_sachdovn desc");
-
-                            $lua_chon="";
 
                             while($bt_sachdovn_result_array=$bt_sachdovn_result->fetch_array()) {
                                 $ten_bt_sachdovn = $bt_sachdovn_result_array['ten_bt_sachdovn'];
                                 $ma_bt_sachdovn = $bt_sachdovn_result_array['ma_bt_sachdovn'];
 
-                                if($_SESSION['ma_bt_sachdovn']==$ma_bt_sachdovn) {
-                                    $lua_chon = "selected";
-                                }
-
-                                echo "<option value='$ma_bt_sachdovn' $lua_chon>$ten_bt_sachdovn</option>";
+                                echo "<option value='$ma_bt_sachdovn'>$ten_bt_sachdovn</option>";
                                 $_SESSION['ma_bt_sachdovn'] = $ma_bt_sachdovn;
-                                $lua_chon="";
                             }
                         ?>
                     </select>
@@ -146,26 +135,15 @@
                 </h4>
                     <select name="bt_iucn" id="" class="cb">
                         <?php
-                            if(!isset($_SESSION['ma_bt_iucn'])) {
-                                $_SESSION['ma_bt_iucn']="";
-                            }
-
                             //ma_bt_iucn,ten_bt_iucn
                             $bt_iucn_result = $mysqli->query("select * from baoton_iucn order by ma_bt_iucn desc");
-
-                            $lua_chon="";
 
                             while($bt_iucn_result_array=$bt_iucn_result->fetch_array()) {
                                 $ten_bt_iucn = $bt_iucn_result_array['ten_bt_iucn'];
                                 $ma_bt_iucn = $bt_iucn_result_array['ma_bt_iucn'];
 
-                                if($_SESSION['ma_bt_iucn']==$ma_bt_iucn) {
-                                    $lua_chon = "selected";
-                                }
-
-                                echo "<option value='$ma_bt_iucn' $lua_chon>$ten_bt_iucn</option>";
+                                echo "<option value='$ma_bt_iucn'>$ten_bt_iucn</option>";
                                 $_SESSION['ma_bt_iucn'] = $ma_bt_iucn;
-                                $lua_chon="";
                             }
                         ?>
                     </select>
@@ -186,7 +164,7 @@
                 </h4>
                     <input type="text" class="form-control" name="diadiem" placeholder="Nhập địa điểm sống của loài...">
                     <br>
-                <input type="submit" value="Thêm" style="border: none; width: 100%; background-color: #006089; color: white; padding: 7px;">
+                <input type="submit" name="Them_dv" value="Thêm" style="border: none; width: 100%; background-color: #006089; color: white; padding: 7px;">
             </div>
             <div class="col-3" style="margin-top: 20px; padding-left: 30px;">
                 <div class="table-responsive">
@@ -198,26 +176,15 @@
                             <td>
                                 <select name="gioi" id="" class="cb">
                                     <?php
-                                        if(!isset($_SESSION['ma_gioi'])) {
-                                            $_SESSION['ma_gioi']="";
-                                        }
-
                                         //ma_gioi,ten_gioi
                                         $gioi_result = $mysqli->query("select * from gioi order by ma_gioi");
-
-                                        $lua_chon="";
 
                                         while($gioi_result_array=$gioi_result->fetch_array()) {
                                             $ten_gioi = $gioi_result_array['ten_gioi'];
                                             $ma_gioi = $gioi_result_array['ma_gioi'];
 
-                                            if($_SESSION['ma_gioi']==$ma_gioi) {
-                                                $lua_chon = "selected";
-                                            }
-
-                                            echo "<option value='$ma_gioi' $lua_chon>$ten_gioi</option>";
+                                            echo "<option value='$ma_gioi'>$ten_gioi</option>";
                                             $_SESSION['ma_gioi'] = $ma_gioi;
-                                            $lua_chon="";
                                         }
                                     ?>
                                 </select>
@@ -230,26 +197,15 @@
                             <td>
                                 <select name="nganh" id="" class="cb">
                                     <?php
-                                        if(!isset($_SESSION['ma_nganh'])) {
-                                            $_SESSION['ma_nganh']="";
-                                        }
-
                                         //ma_nganh,ten_nganh
                                         $nganh_result = $mysqli->query("select * from nganh order by ma_nganh");
-
-                                        $lua_chon="";
 
                                         while($nganh_result_array=$nganh_result->fetch_array()) {
                                             $ten_nganh = $nganh_result_array['ten_nganh'];
                                             $ma_nganh = $nganh_result_array['ma_nganh'];
 
-                                            if($_SESSION['ma_nganh']==$ma_nganh) {
-                                                $lua_chon = "selected";
-                                            }
-
-                                            echo "<option value='$ma_nganh' $lua_chon>$ten_nganh</option>";
+                                            echo "<option value='$ma_nganh'>$ten_nganh</option>";
                                             $_SESSION['ma_nganh'] = $ma_nganh;
-                                            $lua_chon="";
                                         }
                                     ?>
                                 </select>
@@ -262,26 +218,15 @@
                             <td>
                                 <select name="lop" id="" class="cb">
                                     <?php
-                                        if(!isset($_SESSION['ma_lop'])) {
-                                            $_SESSION['ma_lop']="";
-                                        }
-
                                         //ma_lop,ten_lop
                                         $lop_result = $mysqli->query("select * from lop order by ma_lop");
-
-                                        $lua_chon="";
 
                                         while($lop_result_array=$lop_result->fetch_array()) {
                                             $ten_lop = $lop_result_array['ten_lop'];
                                             $ma_lop = $lop_result_array['ma_lop'];
 
-                                            if($_SESSION['ma_lop']==$ma_lop) {
-                                                $lua_chon = "selected";
-                                            }
-
                                             echo "<option value='$ma_lop' $lua_chon>$ten_lop</option>";
                                             $_SESSION['ma_lop'] = $ma_lop;
-                                            $lua_chon="";
                                         }
                                     ?>
                                 </select>
@@ -294,26 +239,15 @@
                             <td>
                                 <select name="ho" id="" class="cb">
                                     <?php
-                                        if(!isset($_SESSION['ma_ho'])) {
-                                            $_SESSION['ma_ho']="";
-                                        }
-
                                         //ma_ho,ten_ho
                                         $ho_result = $mysqli->query("select * from ho order by ma_ho");
-
-                                        $lua_chon="";
 
                                         while($ho_result_array=$ho_result->fetch_array()) {
                                             $ten_ho = $ho_result_array['ten_ho'];
                                             $ma_ho = $ho_result_array['ma_ho'];
 
-                                            if($_SESSION['ma_ho']==$ma_ho) {
-                                                $lua_chon = "selected";
-                                            }
-
-                                            echo "<option value='$ma_ho' $lua_chon>$ten_ho</option>";
+                                            echo "<option value='$ma_ho'>$ten_ho</option>";
                                             $_SESSION['ma_ho'] = $ma_ho;
-                                            $lua_chon="";
                                         }
                                     ?>
                                 </select>
@@ -326,26 +260,15 @@
                             <td>
                                 <select name="bo" id="" class="cb">
                                     <?php
-                                        if(!isset($_SESSION['ma_bo'])) {
-                                            $_SESSION['ma_bo']="";
-                                        }
-
                                         //ma_bo,ten_bo
                                         $bo_result = $mysqli->query("select * from bo order by ma_bo");
-
-                                        $lua_chon="";
 
                                         while($bo_result_array=$bo_result->fetch_array()) {
                                             $ten_bo = $bo_result_array['ten_bo'];
                                             $ma_bo = $bo_result_array['ma_bo'];
 
-                                            if($_SESSION['ma_bo']==$ma_bo) {
-                                                $lua_chon = "selected";
-                                            }
-
-                                            echo "<option value='$ma_bo' $lua_chon>$ten_bo</option>";
+                                            echo "<option value='$ma_bo'>$ten_bo</option>";
                                             $_SESSION['ma_bo'] = $ma_bo;
-                                            $lua_chon="";
                                         }
                                     ?>
                                 </select>
@@ -373,3 +296,4 @@
         </div>
     </div>
 </form>
+

@@ -10,7 +10,7 @@
 
     switch($route) {
         case "timkiem":
-            $title = "Tìm kiếm";
+            $_SESSION['Title'] = "Tìm kiếm";
             include("function/search/timkiem.php"); 
             break;
 
@@ -26,7 +26,7 @@
 
         case "suathongtin":
             $_SESSION['Title'] = "Sửa thông tin";
-            include("function/update/sua2.php");            
+            include("function/update/sua.php");            
             break;
 
         case "themthongtin":
