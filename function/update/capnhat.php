@@ -28,11 +28,15 @@
             $mysqli->query($sql_xoa_ctv);
 
         $sql_get_ten_image = "select ten_image from hinhanh where ma_dv='".$_POST['xoa_MA_DV']."';";
-        $ten_image = $mysqli->query($sql_get_ten_image)->fetch_array();
-        $ten_file_image = "../../img/animals/".$ten_image[0];
-        if (file_exists($ten_file_image)) {
-            unlink($ten_file_image);
+        $ten_image_query = $mysqli->query($sql_get_ten_image);
+        if (mysqli_num_rows($ten_image_query)!=0) {
+            $ten_image_query_result = $ten_image_query->fetch_array();
+            $ten_file_image = "../../img/animals/".$ten_image_query_result[0];
+            if (file_exists($ten_file_image)) {
+                unlink($ten_file_image);
+            }
         }
+        
 
         $sql_xoa_phanbo = "delete from phanbo where ma_dv='".$_POST['xoa_MA_DV']."';";
             $mysqli->query($sql_xoa_phanbo);
@@ -73,6 +77,7 @@
 
 <div style="padding: 40px;background-color: #CDEDED;">
     <div class="table-responsive" style="overflow-x:auto;">
+        <div><a href='?route=themthongtin' target='_blank'><button>Thêm thông tin động vật</button></a></div>
         <table class="table table-hover" style="border: 2px solid #000000;">
             <tr>
                 <th>
@@ -112,7 +117,7 @@
 
             <?php
             //Table dongvat: ma_dv,ten_dv,ten_eng,mota,dacdiem,ma_bt_sachdovn,ma_bt_iucn,sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo
-            $delete_render_query = $mysqli->query("select * from dongvat;");
+            $delete_render_query = $mysqli->query("select * from dongvat,themdongvat where dongvat.ma_dv=themdongvat.ma_dv;");
             
             if (mysqli_num_rows($delete_render_query)!=0) {
                 while ($delete_render=$delete_render_query->fetch_array()) {

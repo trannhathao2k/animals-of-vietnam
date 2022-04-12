@@ -72,7 +72,6 @@
                                 <li><a href=''>My Observation</a>
                                     <ul>
                                         <li><a href='?route=capnhatthongtin'>Cập nhật thông tin động vật</a></li>
-                                        <li><a href='?route=themthongtin' target='_blank'>Thêm thông tin động vật</a></li>
                                         <li><a href='dangxuat.php'>Đăng xuất: ".$_SESSION['tt_dangnhap']['hoten_ctv']."</a></li>
                                     </ul>
                                 </li>
