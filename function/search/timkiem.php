@@ -1,115 +1,109 @@
+
+
 <div class="" style="padding: 40px;">
     <div class="row">
         <div class="col-3" style="padding-left: 40px;">
-            <b class="dacdiem">
+            <h3 class="dacdiem">
                 Lọc kết quả
-            </b>
-            <span>(Chọn 1 lựa chọn)</span>
-            <br>
-            <label >
-                <input type="checkbox">
-                    <b>Tất cả</b>
-            </label>
-            <br><hr>
+            </h3>
 
-            <b class="dacdiem">
-                Theo giới
-            </b>
-            <br>
-            <?php 
-                //table gioi: ma_gioi,ten_gioi
-                $sql_gioi = $mysqli->query("select * from gioi");
-                
-                while ($result_gioi=$sql_gioi->fetch_array()) {
-                    echo "<label>
-                            <input type='checkbox' name='theo_gioi[]'>
-                                <b>". $result_gioi['ten_gioi'] ."</b>
-                          </label>
-                        <br>";
-                ?>         
-                    <!-- Script get checked values -->
-                    <script>
-                        if (document.getElementByName("theo_gioi[]").checked) {
-                            <?php echo $result_gioi['ten_gioi']."checked"; ?>
-                        }
-                    </script>
+            <h5 style="margin-top: 40px; color: #1E90FF">Giới</h5>
+            <select name="" class="cb" onchange="showHintGioi(this.value)">
+                <option value="all">Tất cả</option>
                 <?php
-                }
-            ?>
-            <hr>
+                    $sql_gioi = "SELECT * FROM gioi";
+                    $queue_gioi = mysqli_query( $mysqli, $sql_gioi);
+                    while ($row_gioi = mysqli_fetch_array($queue_gioi)) {
+                        ?>
+                        <option value="<?php echo $row_gioi['ma_gioi'] ?>"><?php echo $row_gioi['ten_gioi'] ?></option>
+                        <?php
+                    }
+                ?>
+            </select>
+            <script>
+                function showHintGioi(value) {
 
-            <b class="dacdiem">
-                Theo ngành
-            </b>
-            <br>
-            <?php 
-                //table nganh: ma_nganh,ten_nganh
-                $sql_nganh = $mysqli->query("select * from nganh");
-                
-                while ($result_nganh=$sql_nganh->fetch_array()) {
-                    echo "<label>
-                            <input type='checkbox' name='theo_nganh[]'>
-                                <b>". $result_nganh['ten_nganh'] ."</b>
-                          </label>
-                        <br>";
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("kq-gioi").innerHTML =(this.responseText); //=>kết quả trả về thêm vào element này, có html vẫn hiện được
+                        }
+                    };
+                    xmlhttp.open("GET", "getdata_gioi.php?gioi=" + value, true);
+                    xmlhttp.send();
                 }
-            ?>
-            <hr>
+            </script>
 
-            <b class="dacdiem">
-                Theo lớp
-            </b>
-            <br>
-            <?php 
-                //table lop: ma_lop,ten_lop
-                $sql_lop = $mysqli->query("select * from lop");
-                
-                while ($result_lop=$sql_lop->fetch_array()) {
-                    echo "<label>
-                            <input type='checkbox' name='theo_lop[]'>
-                                <b>". $result_lop['ten_lop'] ."</b>
-                          </label>
-                        <br>";
-                }
-            ?>
-            <hr>
+            <h5 style="margin-top: 20px; color: #1E90FF">Ngành</h5>
+            <select name="" class="cb" onchange="showHintNganh(this.value)">
+                <option value="all">Tất cả</option>
+                <?php
+                    $sql_nganh = "SELECT * FROM nganh";
+                    $queue_nganh = mysqli_query( $mysqli, $sql_nganh);
+                    while ($row_nganh = mysqli_fetch_array($queue_nganh)) {
+                        ?>
+                        <option value="<?php echo $row_nganh['ma_nganh'] ?>"><?php echo $row_nganh['ten_nganh'] ?></option>
+                        <?php
+                    }
+                ?>
+            </select>
+            <script>
+                function showHintNganh(value) {
 
-            <b class="dacdiem">
-                Theo bộ
-            </b>
-            <br>
-            <?php 
-                //table bo: ma_bo,ten_bo
-                $sql_bo = $mysqli->query("select * from bo");
-                
-                while ($result_bo=$sql_bo->fetch_array()) {
-                    echo "<label>
-                            <input type='checkbox' name='theo_bo[]'>
-                            <b>". $result_bo['ten_bo'] ."</b>
-                          </label>
-                        <br>";
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("kq-nganh").innerHTML =(this.responseText); //=>kết quả trả về thêm vào element này, có html vẫn hiện được
+                        }
+                    };
+                    xmlhttp.open("GET", "getdata_nganh.php?nganh=" + value, true);
+                    xmlhttp.send();
                 }
-            ?>
-            <hr>
+            </script>
 
-            <b class="dacdiem">
-                Theo họ
-            </b>
-            <br>
-            <?php 
-                //table ho: ma_ho,ten_ho
-                $sql_ho = $mysqli->query("select * from ho");
-                
-                while ($result_ho=$sql_ho->fetch_array()) {
-                    echo "<label>
-                            <input type='checkbox' name='theo_ho[]'>
-                                <b>". $result_ho['ten_ho'] ."</b>
-                          </label>
-                        <br>";
-                }
-            ?>
-            <hr>
-        </div>
+            <h5 style="margin-top: 20px; color: #1E90FF">Lớp</h5>
+            <select name="" class="cb" onchange="showHintLop(this.value)">
+                <option value="all">Tất cả</option>
+                <?php
+                    $sql_lop = "SELECT * FROM lop";
+                    $queue_lop = mysqli_query( $mysqli, $sql_lop);
+                    while ($row_lop = mysqli_fetch_array($queue_lop)) {
+                        ?>
+                        <option value="<?php echo $row_lop['ma_lop'] ?>"><?php echo $row_lop['ten_lop'] ?></option>
+                        <?php
+                    }
+                ?>
+            </select>
+
+            <h5 style="margin-top: 20px; color: #1E90FF">Bộ</h5>
+            <select name="" class="cb" onchange="showHintBo(this.value)">
+                <option value="all">Tất cả</option>
+                <?php
+                    $sql_bo = "SELECT * FROM bo";
+                    $queue_bo = mysqli_query( $mysqli, $sql_bo);
+                    while ($row_bo = mysqli_fetch_array($queue_bo)) {
+                        ?>
+                        <option value="<?php echo $row_bo['ma_bo'] ?>"><?php echo $row_bo['ten_bo'] ?></option>
+                        <?php
+                    }
+                ?>
+            </select>
+
+            <h5 style="margin-top: 20px; color: #1E90FF">Họ</h5>
+            <select name="" class="cb">
+                <option value="all">Tất cả</option>
+                <?php
+                    $sql_ho = "SELECT * FROM ho";
+                    $queue_ho = mysqli_query( $mysqli, $sql_ho);
+                    while ($row_ho = mysqli_fetch_array($queue_ho)) {
+                        ?>
+                        <option value="<?php echo $row_ho['ma_ho'] ?>"><?php echo $row_ho['ten_ho'] ?></option>
+                        <?php
+                    }
+                ?>
+            </select>
+
+
 
         <!-- Result -->
         <?php

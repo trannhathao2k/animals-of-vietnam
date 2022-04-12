@@ -22,8 +22,6 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
             <div class="d-flex flex-wrap justify-content-around anhnho"
                 style="background-color: #CDEDED; margin:10px 10px 0 10px; padding:10px;">
                 <?php
-                    
-
                     $sql_anh = "SELECT ten_image FROM hinhanh WHERE ma_dv='$_GET[id]'";
                     $query_anh = mysqli_query($mysqli, $sql_anh);
                     if (mysqli_num_rows($query_anh)==0) {

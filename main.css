@@ -60,6 +60,7 @@
     padding: 7px;
     color: #888888;
     border: 2px solid #888888;
+    max-width: 30px;
 }
 
 .sl-loai {
@@ -169,9 +170,15 @@ img .anhconvat {
     font-size: 18px;
 }
 .dacdiem {
-    font-size: 20px;
-    color: #006089;
+    font-size: 24px;
+    color: #035375;
 }
+.ten {
+    font-size: 20px;
+    color: #2FAADF;
+}
+
+
 .thongtinphanloai td,.thongtinphanloai th {
     border-bottom: none;
 }

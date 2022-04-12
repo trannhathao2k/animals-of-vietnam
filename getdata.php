@@ -1,15 +1,52 @@
 <?php
-include("../config.php");
-include("../autoload.php");
+include("./config.php");
+include("./autoload.php");
 session_start();
 
-
-$sql = "select * from ".$_GET['bang'];
-$data = (new Database)->query($sql);
-if(count($data)>0){
-    print_r($data);//In ra kết quả trả về
-}else{
-    echo "Không có kết quả phù hợp";
+if(isset($_GET['bang'])) {
+    $bang = $_GET['bang'];
 }
+else {
+    $bang = "bo";
+}
+
+if($bang){
+        switch($bang){
+        case "gioi":
+            $sql_pl = "SELECT ten_gioi FROM gioi";
+            break;
+        case "nganh":
+            $sql_pl = "SELECT ten_nganh FROM nganh";
+            break;
+        case "lop":
+            $sql_pl = "SELECT ten_lop FROM lop";
+            break;
+        case "bo":
+            $sql_pl = "SELECT ten_bo FROM bo";
+            break;
+        case "ho":
+            $sql_pl = "SELECT ten_ho FROM ho";
+            break;
+    }
+
+    $query_pl = mysqli_query($mysqli,$sql_pl);
+    while($row_pl = mysqli_fetch_array($query_pl)) {
+        echo 
+        '
+        <div class="oitem" style="display: inline-block;" >
+        <h5 class="tenloai">
+        '.$row_pl["ten_".$bang].'
+        </h5>       
+        </div>
+        
+        ';
+        
+    }
+}
+else {
+    echo '<p style="color:red; font-weight: bold;">Vui lòng chọn phân loại</p>';
+}
+
+
 
 ?>
