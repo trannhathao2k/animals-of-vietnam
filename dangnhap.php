@@ -11,7 +11,7 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
     else{
         $_SESSION["tt_dangnhap"] = $data;//Đây là biến lưu tất cả thông tin khi đăng nhập thành công
         //điều hướng đến trang nào mình muốn
-        header("location:index.php");
+        header("location:index.php?route=capnhatthongtin");
     }
 
 }

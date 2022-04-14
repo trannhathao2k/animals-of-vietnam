@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title><?php echo $_SESSION['Title']; ?></title>
     
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
     <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -63,22 +63,8 @@
     <!-- Header -->
     <div class="container-fluid root">
         <div class="header container-fluid">
-            <?php
-                if (!isset($_SESSION['tt_dangnhap'])) {
-                    echo "<div><a href='./dangnhap.php' class='text-decoration-none text-white link'>My Observation</a></div>";
-                } else {
-                    echo "<div class='ontop'>
-                            <ul>
-                                <li><a href=''>My Observation</a>
-                                    <ul>
-                                        <li><a href='?route=capnhatthongtin'>Cập nhật thông tin động vật</a></li>
-                                        <li><a href='dangxuat.php'>Đăng xuất: ".$_SESSION['tt_dangnhap']['hoten_ctv']."</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>";
-                }
-            ?>
+            
+            
             <a class='text-decoration-none' href="?trangchu">
                <img id="logo" src="./img/logo.png" alt="Logo">
                 <img id="thuonghieu" src="./img/thuonghieu.png" alt="Thương hiệu">&#160;&#160; 
@@ -90,6 +76,25 @@
                 <input type="search" class="input_search form-control" name="keyword" placeholder="Nhập tên loài chim cần tìm...">
                 <button type="submit" class="btn search_icon"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
+
+            <div>
+                <?php
+                    if (!isset($_SESSION['tt_dangnhap'])) {
+                        echo "<div  class='ontop'><a href='./dangnhap.php' class='text-decoration-none text-white link'>My Observation</a></div>";
+                    } else {
+                        echo "<div class='ontop'>
+                                <ul>
+                                    <li><a href=''>My Observation</a>
+                                        <ul>
+                                            <li><a href='?route=capnhatthongtin'>Cập nhật thông tin động vật</a></li>
+                                            <li><a href='dangxuat.php'>Đăng xuất: ".$_SESSION['tt_dangnhap']['hoten_ctv']."</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>";
+                    }
+                ?>
+            </div>
         </div>
 
         <!-- Router - Chuyển hướng đến các chức năng -->
