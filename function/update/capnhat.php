@@ -50,13 +50,13 @@
     }
 ?>
 
-<div style="padding: 40px;background-color: #FFFFFF;">
+<div style="padding: 40px; background-color: #FFFFFF;">
     <div class="table-responsive" style="overflow-x:auto;
     ">
         <div><a href='?route=themthongtin' target='_blank'><button type="button" class="btn btn-primary">Thêm thông tin động vật</button></a></div>
         <br>
         <div>
-        <table class="table table-hover" style="border: 2px solid #000000; ">
+        <table class="table table-hover" style="border: 2px solid #000000;">
             <tr>
                 <th>
                     Ảnh
@@ -167,24 +167,24 @@
                     $str_phanbo         = strip_tags($str_phanbo);
 
 
-                    if (strlen($str_mota) > 200) {
-                        // truncate string
-                        $stringCut = substr($str_mota, 0, 200); $endPoint = strrpos($stringCut, ' ');
+                    // if (strlen($str_mota) > 200) {
+                    //     // truncate string
+                    //     $stringCut = substr($str_mota, 0, 200); $endPoint = strrpos($stringCut, ' ');
 
-                        //if the string doesn't contain any space then it will cut without word basis.
-                        $str_mota = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                        $str_mota .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
-                    }
-                    if (strlen($str_dacdiem) > 200) {
-                        $stringCut = substr($str_dacdiem, 0, 200); $endPoint = strrpos($stringCut, ' ');
-                        $str_dacdiem = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                        $str_dacdiem .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
-                    }
-                    if (strlen($str_phanbo) > 200) {
-                        $stringCut = substr($str_phanbo, 0, 200); $endPoint = strrpos($stringCut, ' ');
-                        $str_phanbo = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                        $str_phanbo .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
-                    }
+                    //     //if the string doesn't contain any space then it will cut without word basis.
+                    //     $str_mota = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                    //     $str_mota .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
+                    // }
+                    // if (strlen($str_dacdiem) > 200) {
+                    //     $stringCut = substr($str_dacdiem, 0, 200); $endPoint = strrpos($stringCut, ' ');
+                    //     $str_dacdiem = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                    //     $str_dacdiem .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
+                    // }
+                    // if (strlen($str_phanbo) > 200) {
+                    //     $stringCut = substr($str_phanbo, 0, 200); $endPoint = strrpos($stringCut, ' ');
+                    //     $str_phanbo = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                    //     $str_phanbo .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
+                    //}
 
                     echo "<tr>
                     <td>
@@ -196,10 +196,10 @@
                     <td>
                         $str_ten_eng
                     </td>
-                    <td>
+                    <td style='font-size: smaller;'>
                         $str_mota
                     </td>
-                    <td>
+                    <td style='font-size: smaller;'>
                         $str_dacdiem
                     </td>
                     <td>
