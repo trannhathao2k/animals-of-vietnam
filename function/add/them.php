@@ -297,7 +297,6 @@
                                 <?php
                             }
                         ?>
-                        
                     </div>
                     <div style="text-align:center">
                         <div style="display: inline-block;">
@@ -327,13 +326,14 @@
                                 <th>STT</th>
                                 <th>Tọa độ</th>
                             </tr>
-                            <tr>
+                            
                                 <?php
                                     $i = 1;
                                     $sql_toado = "SELECT * FROM temp";
                                     $queue_toado = mysqli_query($mysqli, $sql_toado);
                                     while($row_toado = mysqli_fetch_array($queue_toado)){
                                         ?>
+                                        <tr>
                                             <td>
                                                 <?php
                                                     echo $i;
@@ -343,16 +343,18 @@
                                             <td>
                                                 <?php echo $row_toado['ten_temp'] ?>
                                             </td>
+                                        </tr>
                                         <?php
                                     }
                                 ?>
-                            </tr>
+                            
                         </table>
                     </div>
                         
                         <br>
-                        <input type="text" class="form-control" name="phanbo" placeholder="Nhập tọa độ cần thêm">
+                        <input type="text" class="form-control" name="toado" placeholder="Nhập tọa độ cần thêm">
                         <div class="text-end" style="margin-top: 5px;">
+                            <input type="hidden" name="stt" value="<?php echo $i; ?>">
                             <button class="btn text-white btn-info" style="border: none; background-color: #006089;">
                                 Thêm tọa độ
                             </button>

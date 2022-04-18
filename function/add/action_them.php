@@ -3,6 +3,7 @@
     include("../../autoload.php");
     session_start();
 
+    //Thêm thông tin động vật
     if (isset($_POST['Them_dv'])) {
         //Thông tin CTV thêm dữ liệu
         $ma_ctv = $_SESSION['tt_dangnhap']['ma_ctv'];
@@ -29,8 +30,8 @@
         $diadiem = $_POST['diadiem'];
         $diadiem = str_replace("'", "&#39;", $diadiem);
 
-        $phanbo = $_POST['phanbo'];
-        $phanbo = str_replace("'", "&#39;", $phanbo);
+        // $phanbo = $_POST['phanbo'];
+        // $phanbo = str_replace("'", "&#39;", $phanbo);
 
         $ma_gioi = $_POST['gioi'];
         $ma_nganh = $_POST['nganh'];
@@ -50,7 +51,7 @@
                     if ($dacdiem!="") {
                         if ($sinhcanh!="") {
                             if ($diadiem!="") {
-                                if ($phanbo!="") {
+                                //if ($phanbo!="") {
                                     //Kiểm tra trùng tên
                                     $duplicate_sql = "select * from dongvat where ten_dv='$ten_dv' or ten_eng='$ten_eng';";
                                     $duplicate_check = $mysqli->query($duplicate_sql);
@@ -88,7 +89,7 @@
                                         }
 
                                         //Table phanbo: ma_pb,noiphanbo,ma_dv
-                                        $mysqli->query("insert into phanbo value(null,'$phanbo','$get_ma_dv_result');");
+                                        //$mysqli->query("insert into phanbo value(null,'$phanbo','$get_ma_dv_result');");
 
                                         //Ghi nhận vào bảng themdongvat
                                         //table themdongvat: ma_ctv,ma_dv
@@ -96,7 +97,7 @@
 
                                         (new obvervation)->NotificationAndGoto("Đã thêm, cảm ơn bạn đã đóng góp!","../../index.php?route=capnhatthongtin");
                                     } else {$_SESSION["err"] = "Trùng tên động vật có sẵn!";}
-                                } else {$_SESSION["err"] = "Chưa nhập phân bố!";}
+                                //} else {$_SESSION["err"] = "Chưa nhập phân bố!";}
                             } else {$_SESSION["err"] = "Chưa nhập địa điểm!";}
                         } else {$_SESSION["err"] = "Chưa nhập sinh cảnh!";}
                     } else {$_SESSION["err"] = "Chưa nhập đặc điểm!";}
@@ -109,5 +110,18 @@
             //echo $notification;
             (new obvervation)->NotificationAndGoback($notification);
         }       
+    }
+
+    //Thêm tọa độ
+    if (isset($_POST['toado'])) {
+        $toaDo = $_POST['toado'];
+        $stt = $_POST['stt'];
+
+        if ($toaDo!="") {
+            $mysqli->query("insert into temp value('$stt','$toaDo');");
+            (new obvervation)->NotificationAndGoback("Đã thêm tọa độ!");
+        } else {
+            (new obvervation)->NotificationAndGoback("Tọa độ vừa nhập có vấn đề!");
+        } 
     }
 ?>
