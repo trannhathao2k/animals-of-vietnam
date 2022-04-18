@@ -11,7 +11,7 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
     else{
         $_SESSION["tt_dangnhap"] = $data;//Đây là biến lưu tất cả thông tin khi đăng nhập thành công
         //điều hướng đến trang nào mình muốn
-        header("location:index.php");
+        header("location:index.php?route=capnhatthongtin");
     }
 
 }
@@ -34,18 +34,16 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
 <body>
     <div class="container-fluid root">
         <div class="header container-fluid">
-            <a href="./index.php">
+            <a href="./index.php" class="text-decoration-none">
                 <img id="logo" src="./img/logo.png" alt="Logo">
                 <img id="thuonghieu" src="./img/thuonghieu.png" alt="Thương hiệu">&#160;&#160;
             </a>
             
-            <a href="" class="text-decoration-none text-white">
                 <b class="dacdiem" style="font-size: 30px; ">
                     <b>
                         MY OBSERVATION
                     </b>
                 </b>
-            </a>
         </div>
         <div style="background-color: #CDEDED; padding: 20px;">
             <div class="row">
@@ -57,7 +55,7 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
                 <div class="col-5" style="padding-left: 70px; padding-top: 20px;">
                     <div style="width: 500px; border-radius: 5px; background-color: white; padding: 20px 40px;">
                         <form action="" method="post">
-                            <div style="height: 250px; text-align: center;">
+                            <div style="height: 200px; text-align: center;">
                                 <h3 class="dacdiem" style="line-height: 200px;">
                                     <b style="font-size: 30px;">
                                         MY OBSERVATION
@@ -91,7 +89,7 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
         <div class="footer">
         <pre>
             ©2022. Đường 3/2, phường Xuân Khánh, quận Ninh Kiều, thành phố Cần Thơ.
-            Email: haob1805856@student.ctu.edu.vn. SDT: 0968892700.
+            Email: animalsofvietnam@gmail.com.
            </pre>
         </div>
     </div>

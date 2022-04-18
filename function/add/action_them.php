@@ -41,7 +41,6 @@
         $ten_file_anh_1 = $_FILES['hinh_anh_1']['name'];
         $ten_file_anh_2 = $_FILES['hinh_anh_2']['name'];
         $ten_file_anh_3 = $_FILES['hinh_anh_3']['name'];
-        $ten_file_anh_4 = $_FILES['hinh_anh_4']['name'];
 
         unset($_SESSION["err"]);
 
@@ -65,34 +64,27 @@
                                         $get_ma_dv = $mysqli->query("select ma_dv from dongvat order by ma_dv desc;")->fetch_array();
                                         $get_ma_dv_result = $get_ma_dv[0];
 
-                                        //table hinhanh: ma_image,ten_image,ma_dv
+                                        //table hinhanh: ma_image,ten_image,ma_dv,hinhanh_index
                                         if ($ten_file_anh_1!="") {
-                                            $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_1','$get_ma_dv_result');");
+                                            $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_1','$get_ma_dv_result',1);");
 
                                             //Thêm file ảnh đã tải lên
                                             $link_anh_1 = "../../img/animals/".$ten_file_anh_1;
                                             move_uploaded_file($_FILES['hinh_anh_1']['tmp_name'],$link_anh_1);
                                         }
                                         if ($ten_file_anh_2!="") {
-                                            $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_2','$get_ma_dv_result');");
+                                            $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_2','$get_ma_dv_result',0);");
 
                                             //Thêm file ảnh đã tải lên
                                             $link_anh_2 = "../../img/animals/".$ten_file_anh_2;
                                             move_uploaded_file($_FILES['hinh_anh_2']['tmp_name'],$link_anh_2);
                                         }
                                         if ($ten_file_anh_3!="") {
-                                            $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_3','$get_ma_dv_result');");
+                                            $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_3','$get_ma_dv_result',0);");
 
                                             //Thêm file ảnh đã tải lên
                                             $link_anh_3 = "../../img/animals/".$ten_file_anh_3;
                                             move_uploaded_file($_FILES['hinh_anh_3']['tmp_name'],$link_anh_3);
-                                        }
-                                        if ($ten_file_anh_4!="") {
-                                            $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_4','$get_ma_dv_result');");
-
-                                            //Thêm file ảnh đã tải lên
-                                            $link_anh_4 = "../../img/animals/".$ten_file_anh_4;
-                                            move_uploaded_file($_FILES['hinh_anh_4']['tmp_name'],$link_anh_4);
                                         }
 
                                         //Table phanbo: ma_pb,noiphanbo,ma_dv

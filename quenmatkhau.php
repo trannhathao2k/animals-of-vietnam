@@ -36,19 +36,17 @@ if(isset($_POST["email"])){
 <body>
     <div class="container-fluid root">
         <div class="header container-fluid">
-            <a href="./index.php">
+            <a href="./index.php" class="text-decoration-none">
                 <img id="logo" src="./img/logo.png" alt="Logo">
                 <img id="thuonghieu" src="./img/thuonghieu.png" alt="Thương hiệu">&#160;&#160;
             </a>
-            <a href="./dangnhap.php" class="text-decoration-none text-white link">Dang nhap</a>
+            <a href="./dangnhap.php" class="text-decoration-none text-white link">Đăng nhập</a>
             
-            <a href="" class="text-decoration-none text-white">
                 <b class="dacdiem" style="font-size: 30px; ">
                     <b>
                         QUÊN MẬT KHẨU
                     </b>
                 </b>
-            </a>
         </div>
         <div style="background-color: #CDEDED; padding: 20px;">
             <div class="row">
@@ -89,7 +87,7 @@ if(isset($_POST["email"])){
         <div class="footer">
         <pre>
             ©2022. Đường 3/2, phường Xuân Khánh, quận Ninh Kiều, thành phố Cần Thơ.
-            Email: haob1805856@student.ctu.edu.vn. SDT: 0968892700.
+            Email: animalsofvietnam@gmail.com.
            </pre>
         </div>
     </div>

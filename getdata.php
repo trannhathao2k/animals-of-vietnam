@@ -33,12 +33,13 @@ if($bang){
     while($row_pl = mysqli_fetch_array($query_pl)) {
         echo 
         '
-        <div class="oitem" style="display: inline-block;" >
-        <h5 class="tenloai">
-        '.$row_pl["ten_".$bang].'
-        </h5>       
-        </div>
-        
+        <a href="?phanloai=<?php echo '.$row_pl["ma_".$bang].' ?>&loai='.$bang.'" class="text-decoration-none">
+            <div class="oitem" style="display: inline-block;" >
+                <h5 class="tenloai">
+                    '.$row_pl["ten_".$bang].'
+                </h5>       
+            </div>
+        </a>
         ';
         
     }

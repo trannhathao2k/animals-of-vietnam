@@ -146,7 +146,6 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                                 $row_nganh = mysqli_fetch_array($query_nganh);
                                 echo $row_nganh['ten_nganh'];
                                 ?>
-
                         </td>
                     </tr>
                     <tr>

@@ -11,7 +11,7 @@
     switch($route) {
         case "timkiem":
             $_SESSION['Title'] = "Tìm kiếm";
-            include("function/search/timkiem.php"); 
+            include("timkiem.php"); 
             break;
 
         case "chitiet":

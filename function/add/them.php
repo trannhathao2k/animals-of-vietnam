@@ -1,7 +1,9 @@
 <form action="function/add/action_them.php" method="POST" enctype="multipart/form-data">
+
     <div class="row" style="width: 100%">
 
-        <div class="col-8" style="padding: 20px; background-color: #CDEDED; margin-top: 20px; border-radius: 5px;">
+        <div class="col-sm-1"></div>
+        <div class="col-7" style="padding: 20px; background-color: #CDEDED; margin-top: 20px;margin-bottom: 20px; border-radius: 5px;">
             <h4 class="dacdiem">
                 <b>
                     Tên Tiếng Việt
@@ -55,7 +57,7 @@
                 ?>
             </select>
             <br>
-            <h4 class="dacdiem">
+            <h4 class="dacdiem" style="margin-top: 20px;">
                 <b>
                     Tình trạng bảo tồn IUCN
                     <span><b style="color: red;">(*)</b></span>
@@ -76,7 +78,7 @@
                 ?>
             </select>
             <br>
-            <h4 class="dacdiem">
+            <h4 class="dacdiem" style="margin-top: 20px;">
                 <b>
                     Sinh cảnh
                     <span><b style="color: red;">(*)</b></span>
@@ -94,15 +96,16 @@
             <br>
             <input type="submit" name="Them_dv" value="Thêm" style="border: none; width: 100%; background-color: #006089; color: white; padding: 7px;">
         </div>
-        <div class="col-4">
-            <div class="">
-                <!-- <div class="col-4">
-                    <label for="file-input_1">
-                        <img id="review_1" class="anhconvat" src="./img/add.png" alt="">
-                    </label>
-                    <input id="file-input_1" name="hinh_anh_1" type="file" accept="image/*" onchange="loadFile_1(event)" style="display: none;" />
-                </div> -->
-                <div class="d-flex flex-wrap justify-content-around anhnho" style="background-color: #CDEDED; margin:10px 10px 0 10px; padding:10px;
+        <div class="col-3" style="margin-top: 20px">
+            
+            <div style="margin-left: 10px;">
+            <!-- <div class="col-4">
+                <label for="file-input_1">
+                    <img id="review_1" class="anhconvat" src="./img/add.png" alt="">
+                </label>
+                <input id="file-input_1" name="hinh_anh_1" type="file" accept="image/*" onchange="loadFile_1(event)" style="display: none;" />
+            </div> -->
+                <div class="d-flex flex-wrap justify-content-around anhnho" style="background-color: #CDEDED; padding:10px;
                 ">
                     <label for="file-input_2">
                         <img id="review_2" src="./img/add.png" alt="">
@@ -120,7 +123,7 @@
                     <input id="file-input_4" name="hinh_anh_4" type="file" accept="image/*" onchange="loadFile_4(event)" style="display: none;" />
                 </div>
 
-                <!-- Giup review anh tai len -->
+            <!-- Giup review anh tai len -->
                 <script>
                     var loadFile_1 = function(event) {
                         var review_1 = document.getElementById('review_1');
@@ -155,6 +158,7 @@
 
 
                 <!-- <div id="drag-drop-area"></div> 
+    
                 <script>
                     var uppy = Uppy.Core()
                         .use(Uppy.Dashboard, {
@@ -168,7 +172,8 @@
                     })
                 </script> -->
             </div>
-            <div class="row" style="margin-top: 20px; padding-left: 30px;">
+            
+            <div style="margin: 20px 0 0 10px">
                 <div class="table-responsive">
                     <table class="table table-boderless thongtinphanloai">
                         <tr>
@@ -278,24 +283,86 @@
                         </tr>
                     </table>
                 </div>
-                <h2 class="dacdiem" style="margin-top: 20px;">
-                    <b>Phân bố</b><span><b style="color: red;">(*)</b></span>
-                </h2>
-                <div>
-                    <img src="./img/bando.png" alt="" class="bando">
-                </div>
-                <div>
-                    <br>
-                    <input type="text" class="form-control" name="phanbo" placeholder="Hoặc nhập tọa độ">
-                    <br>
-                    <div class="text-end">
-                        <button class="btn text-white btn-info" style="border: none; background-color: #006089;">
-                            Chọn
-                        </button>
+
+                    <h2 class="dacdiem" style="margin-top: 20px;">
+                        <b>Phân bố</b><span><b style="color: red;">(*)</b></span>
+                    </h2>
+                    <div>
+                        <?php
+                            $sql_td = "SELECT * FROM temp";
+                            $queue_td = mysqli_query($mysqli, $sql_td);
+                            while($row_td = mysqli_fetch_array($queue_td)){
+                                ?>
+                                    <iframe src="<?php echo $row_td['ten_temp'] ?>" width="300" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <?php
+                            }
+                        ?>
+                        
+                    </div>
+                    <div style="text-align:center">
+                        <div style="display: inline-block;">
+                            <ul class="pagination">
+                                <?php
+                                    $i = 1;
+                                    $sql_toado2 = "SELECT * FROM temp";
+                                    $queue_toado2 = mysqli_query($mysqli, $sql_toado2);
+                                    while($row_toado2 = mysqli_fetch_array($queue_toado2)){
+                                        ?>
+                                            <li class="page-item active">
+                                                <a class="page-link"><?php echo $i ?></a>
+                                            </li>
+                                        <?php
+                                    }
+                                ?>
+                            </ul>
+                        </div>
+                    
+                    </div>
+
+                    <div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>STT</th>
+                                <th>Tọa độ</th>
+                            </tr>
+                            <tr>
+                                <?php
+                                    $i = 1;
+                                    $sql_toado = "SELECT * FROM temp";
+                                    $queue_toado = mysqli_query($mysqli, $sql_toado);
+                                    while($row_toado = mysqli_fetch_array($queue_toado)){
+                                        ?>
+                                            <td>
+                                                <?php
+                                                    echo $i;
+                                                    $i++;
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row_toado['ten_temp'] ?>
+                                            </td>
+                                        <?php
+                                    }
+                                ?>
+                            </tr>
+                        </table>
+                    </div>
+                        
+                        <br>
+                        <input type="text" class="form-control" name="phanbo" placeholder="Nhập tọa độ cần thêm">
+                        <div class="text-end" style="margin-top: 5px;">
+                            <button class="btn text-white btn-info" style="border: none; background-color: #006089;">
+                                Thêm tọa độ
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-sm-1"></div>
 
+            
     </div>
 </form>

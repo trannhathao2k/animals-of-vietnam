@@ -29,10 +29,10 @@ $query_animal = mysqli_query($mysqli,$sql_animal);
 while($row_animal = mysqli_fetch_array($query_animal)) {
     echo
     '<div class="oitem1">
-        <a class="text-decoraton-none" href="?route=chitiet&id='.$row_animal['ten_dv'].'">
+        <a class="text-decoration-none" href="?route=chitiet&id='.$row_animal['ten_dv'].'">
             <img class="anh-index" src="./img/animals/'.$row_animal['ten_image_index'].'" width="50px" alt="'.$row_animal['ten_image_index'].'">
             <div style="padding: 5px;" class="tendv">
-                <h6 class="tendv">
+                <h6 class="tendv" style="color: #006089;">
                     '.$row_animal['ten_dv'].'
                 </h6>
             </div>

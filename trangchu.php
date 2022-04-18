@@ -36,11 +36,13 @@
                 $query_pl = mysqli_query($mysqli,$sql_pl);
                 while($row_pl = mysqli_fetch_array($query_pl)) {
                     ?>
+                    <a onclick="showdv('bo', <?php echo  $row_pl['ma_bo']?>)" class="text-decoration-none">
                         <div class="oitem" style="display: inline-block;" >
                             <h5 class="tenloai">
                                 <?php echo $row_pl['ten_bo'] ?>
                             </h5>       
                         </div>
+                    </a>
                     <?php
                 }
             ?>
@@ -83,10 +85,10 @@
             while($row_animal = mysqli_fetch_array($query_animal))  {
                 ?>
                     <div class="oitem1">
-                        <a class="text-decoraton-none" href="?route=chitiet&id='.$row_animal['ten_dv'].'">
+                        <a class="text-decoration-none" href="?route=chitiet&id=<?php echo $row_animal['ma_dv']?>">
                             <img class="anh-index" src="./img/animals/<?php echo $row_animal['ten_image_index'] ?>" width="50px" alt="<?php echo $row_animal['ten_image_index'] ?>">
                             <div style="padding: 5px;" class="tendv">
-                                <h6 class="tendv">
+                                <h6 class="tendv" style="color: #006089;">
                                     <?php echo $row_animal['ten_dv'] ?>
                                 </h6>
                             </div>

@@ -48,38 +48,16 @@
 
         unset($_POST['xoa_MA_DV']); unset($_POST['xoa_TEN_DV']); 
     }
-
-    // Xac nhan lan 2
-    // if (isset($_POST['xoa_MA_DV']) and isset($_POST['xoa_TEN_DV']) and isset($_POST['xac_nhan_xoa'])) {
-    //     $sql_xoa = "delete from dongvat where Ma_dv='".$_POST['xoa_MA_DV']."';";
-    //     $mysqli->query($sql_xoa);
-    //     echo "Xac nhan xoa";
-    //     unset($_POST['xoa_MA_DV']); unset($_POST['xoa_TEN_DV']); unset($_POST['xac_nhan_xoa']);
-    // } else if (isset($_POST['xoa_MA_DV']) and isset($_POST['xoa_TEN_DV']) and isset($_POST['khong_xac_nhan'])) {
-    //     echo "Ko xac nhan";
-    //     unset($_POST['xoa_MA_DV']); unset($_POST['xoa_TEN_DV']); unset($_POST['xac_nhan_xoa']);
-    // }
-    
-    // if (isset($_POST['xoa_MA_DV']) and isset($_POST['xoa_TEN_DV'])) {
-    //     $Ten_dv_xoa = $_POST['xoa_TEN_DV'];
-
-    //     echo "<form method='POST'><div class='alert'>
-    //         <span class='closebtn' type='submit' name='khong_xac_nhan' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
-            
-    //             <strong>Lưu ý: Việc xóa là không thể hoàn tác!</strong> Xác nhận xóa thông tin của: $Ten_dv_xoa ?
-    //             <button type='submit' name='xac_nhan_xoa'>Xóa</button>
-            
-    //     </div></form>";
-
-    //     unset($_POST['xoa_MA_DV']); unset($_POST['xoa_TEN_DV']);        
-    // }
 ?>
 
-<div style="padding: 40px;background-color: #CDEDED;">
-    <div class="table-responsive" style="overflow-x:auto;">
-        <div><a href='?route=themthongtin' target='_blank'><button>Thêm thông tin động vật</button></a></div>
-        <table class="table table-hover" style="border: 2px solid #000000;">
-            <tr>
+<div style="padding: 40px; background-color: #FFFFFF;">
+    <div class="table-responsive" style="overflow-x:auto;
+    ">
+        <div><a href='?route=themthongtin' target='_blank'><button type="button" class="btn btn-primary">Thêm thông tin động vật</button></a></div>
+        <br>
+        <div>
+        <table class="table table-hover table-striped" style="border: 2px solid #000000;">
+            <tr style="background-color: #47c1f5;text-align:center; color: #024461">
                 <th>
                     Ảnh
                 </th>
@@ -189,24 +167,24 @@
                     $str_phanbo         = strip_tags($str_phanbo);
 
 
-                    if (strlen($str_mota) > 200) {
-                        // truncate string
-                        $stringCut = substr($str_mota, 0, 200); $endPoint = strrpos($stringCut, ' ');
+                    // if (strlen($str_mota) > 200) {
+                    //     // truncate string
+                    //     $stringCut = substr($str_mota, 0, 200); $endPoint = strrpos($stringCut, ' ');
 
-                        //if the string doesn't contain any space then it will cut without word basis.
-                        $str_mota = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                        $str_mota .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
-                    }
-                    if (strlen($str_dacdiem) > 200) {
-                        $stringCut = substr($str_dacdiem, 0, 200); $endPoint = strrpos($stringCut, ' ');
-                        $str_dacdiem = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                        $str_dacdiem .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
-                    }
-                    if (strlen($str_phanbo) > 200) {
-                        $stringCut = substr($str_phanbo, 0, 200); $endPoint = strrpos($stringCut, ' ');
-                        $str_phanbo = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                        $str_phanbo .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
-                    }
+                    //     //if the string doesn't contain any space then it will cut without word basis.
+                    //     $str_mota = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                    //     $str_mota .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
+                    // }
+                    // if (strlen($str_dacdiem) > 200) {
+                    //     $stringCut = substr($str_dacdiem, 0, 200); $endPoint = strrpos($stringCut, ' ');
+                    //     $str_dacdiem = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                    //     $str_dacdiem .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
+                    // }
+                    // if (strlen($str_phanbo) > 200) {
+                    //     $stringCut = substr($str_phanbo, 0, 200); $endPoint = strrpos($stringCut, ' ');
+                    //     $str_phanbo = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                    //     $str_phanbo .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
+                    //}
 
                     echo "<tr>
                     <td>
@@ -218,10 +196,10 @@
                     <td>
                         $str_ten_eng
                     </td>
-                    <td>
+                    <td style='font-size: smaller;'>
                         $str_mota
                     </td>
-                    <td>
+                    <td style='font-size: smaller;'>
                         $str_dacdiem
                     </td>
                     <td>
@@ -240,12 +218,12 @@
                         $str_phanbo
                     </td>
                     <td>    
-                        <a href='?route=suathongtin&id=$MA_DV' target='_blank;'><button>Sửa</button></a>
+                        <a href='?route=suathongtin&id=$MA_DV' target='_blank;'><button  class=\"btn btn-success\">Sửa</button></a>
                         <br><br>
                         <form method='POST' onSubmit=\"if(!confirm('Xác nhận xóa thông tin động vật?')){return false;}\">
                             <input type='hidden' name='xoa_MA_DV' value='$MA_DV'>
                             <input type='hidden' name='xoa_TEN_DV' value='$str_ten_dv'>
-                            <button type='submit'>Xóa</button>
+                            <button type='submit' class=\"btn btn-danger\">Xóa</button>
                         </form>
                     </td>
                 </tr>";
@@ -253,6 +231,7 @@
             }
             ?>
         </table>
+        </div>
     </div>
 </div>
 

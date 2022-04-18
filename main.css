@@ -6,6 +6,8 @@
     
     /* user-select: none; */
 }
+
+
 .header{
     height: 100px;
     background-color: #2FAADF;
@@ -210,3 +212,4 @@ td .cb {
     display: block;
     width: 100%;
 }
+
