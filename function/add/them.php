@@ -314,57 +314,50 @@
                                     }
                                 ?>
                             </ul>
+                        </div>                    
+                    </div>
+                    </form>
+                    <form action="function/add/action_them_toado.php" method="POST" enctype="multipart/form-data">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tọa độ</th>
+                                </tr>                            
+                                    <?php
+                                        $i = 1;
+                                        $sql_toado = "SELECT * FROM temp";
+                                        $queue_toado = mysqli_query($mysqli, $sql_toado);
+                                        while($row_toado = mysqli_fetch_array($queue_toado)){
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <?php
+                                                        echo $i;
+                                                        $i++;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row_toado['ten_temp'] ?>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    ?>                            
+                            </table>
                         </div>
-                    
-                    </div>
+                            <br>
+                            <input type="text" class="form-control" name="toado" placeholder="Nhập tọa độ cần thêm">
+                            <div class="text-end" style="margin-top: 5px;">
+                                <input type="hidden" name="stt" value="<?php echo $i; ?>">
+                                <button class="btn text-white btn-info" style="border: none; background-color: #006089;">
+                                    Thêm tọa độ
+                                </button>
+                            </div>
+                    </form>
 
-                    <div>
-
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <tr>
-                                <th>STT</th>
-                                <th>Tọa độ</th>
-                            </tr>
-                            
-                                <?php
-                                    $i = 1;
-                                    $sql_toado = "SELECT * FROM temp";
-                                    $queue_toado = mysqli_query($mysqli, $sql_toado);
-                                    while($row_toado = mysqli_fetch_array($queue_toado)){
-                                        ?>
-                                        <tr>
-                                            <td>
-                                                <?php
-                                                    echo $i;
-                                                    $i++;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row_toado['ten_temp'] ?>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                ?>
-                            
-                        </table>
-                    </div>
-                        
-                        <br>
-                        <input type="text" class="form-control" name="toado" placeholder="Nhập tọa độ cần thêm">
-                        <div class="text-end" style="margin-top: 5px;">
-                            <input type="hidden" name="stt" value="<?php echo $i; ?>">
-                            <button class="btn text-white btn-info" style="border: none; background-color: #006089;">
-                                Thêm tọa độ
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-1"></div>
-
-            
     </div>
-</form>
