@@ -1,55 +1,3 @@
-<!-- <style>
-    .alert {
-    padding: 20px;
-    background-color: #F44336;
-    color: white;
-    }
-
-    .closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    }
-
-    .closebtn:hover {
-    color: black;
-    }
-</style> -->
-
-
-<?php
-    if (isset($_POST['xoa_MA_DV']) and isset($_POST['xoa_TEN_DV'])) {
-        $sql_xoa_ctv = "delete from themdongvat where ma_dv='".$_POST['xoa_MA_DV']."';";
-            $mysqli->query($sql_xoa_ctv);
-
-        $sql_get_ten_image = "select ten_image from hinhanh where ma_dv='".$_POST['xoa_MA_DV']."';";
-        $ten_image_query = $mysqli->query($sql_get_ten_image);
-        if (mysqli_num_rows($ten_image_query)!=0) {
-            $ten_image_query_result = $ten_image_query->fetch_array();
-            $ten_file_image = "../../img/animals/".$ten_image_query_result[0];
-            if (file_exists($ten_file_image)) {
-                unlink($ten_file_image);
-            }
-        }
-        
-
-        // $sql_xoa_phanbo = "delete from phanbo where ma_dv='".$_POST['xoa_MA_DV']."';";
-        //     $mysqli->query($sql_xoa_phanbo);
-        
-        $sql_xoa_hinh_anh = "delete from hinhanh where ma_dv='".$_POST['xoa_MA_DV']."';";
-            $mysqli->query($sql_xoa_hinh_anh);
-        $sql_xoa_dongvat = "delete from dongvat where ma_dv='".$_POST['xoa_MA_DV']."';";
-            $mysqli->query($sql_xoa_dongvat);
-
-        unset($_POST['xoa_MA_DV']); unset($_POST['xoa_TEN_DV']); 
-    }
-?>
-
 <div style="padding: 40px; background-color: #FFFFFF;">
     <div class="table-responsive" style="overflow-x:auto;
     ">
@@ -218,7 +166,7 @@
                     <td>    
                         <a href='?route=suathongtin&id=$MA_DV' target='_blank;'><button  class=\"btn btn-success\">Sửa</button></a>
                         <br><br>
-                        <form method='POST' onSubmit=\"if(!confirm('Xác nhận xóa thông tin động vật?')){return false;}\">
+                        <form method='POST' action='function/update/action_xoa.php' onSubmit=\"if(!confirm('Xác nhận xóa thông tin động vật?')){return false;}\">
                             <input type='hidden' name='xoa_MA_DV' value='$MA_DV'>
                             <input type='hidden' name='xoa_TEN_DV' value='$str_ten_dv'>
                             <button type='submit' class=\"btn btn-danger\">Xóa</button>

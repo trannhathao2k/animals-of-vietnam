@@ -45,11 +45,10 @@ class obvervation extends DB{
             </script>
         <?php
     } 
-    function NotificationAndReload($notification_str) {
+    function Notification($notification_str) {
         ?>
             <script type="text/javascript">
                 alert("<?php echo $notification_str; ?>");
-                window.location.reload();
             </script>
         <?php
     } 

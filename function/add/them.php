@@ -99,14 +99,13 @@
         <div class="col-3" style="margin-top: 20px">
             
             <div style="margin-left: 10px;">
-            <!-- <div class="col-4">
-                <label for="file-input_1">
-                    <img id="review_1" class="anhconvat" src="./img/add.png" alt="">
-                </label>
-                <input id="file-input_1" name="hinh_anh_1" type="file" accept="image/*" onchange="loadFile_1(event)" style="display: none;" />
-            </div> -->
                 <div class="d-flex flex-wrap justify-content-around anhnho" style="background-color: #CDEDED; padding:10px;
                 ">
+                    <label for="file-input_1">
+                        <img id="review_1" src="./img/add.png" alt="">
+                    </label>
+                    <input id="file-input_1" name="hinh_anh_1" type="file" accept="image/*" onchange="loadFile_1(event)" style="display: none;" />
+
                     <label for="file-input_2">
                         <img id="review_2" src="./img/add.png" alt="">
                     </label>
@@ -116,11 +115,6 @@
                         <img id="review_3" src="./img/add.png" alt="">
                     </label>
                     <input id="file-input_3" name="hinh_anh_3" type="file" accept="image/*" onchange="loadFile_3(event)" style="display: none;" />
-
-                    <label for="file-input_4">
-                        <img id="review_4" src="./img/add.png" alt="">
-                    </label>
-                    <input id="file-input_4" name="hinh_anh_4" type="file" accept="image/*" onchange="loadFile_4(event)" style="display: none;" />
                 </div>
 
             <!-- Giup review anh tai len -->
@@ -145,13 +139,6 @@
                         review_3.src = URL.createObjectURL(event.target.files[0]);
                         review_3.onload = function() {
                             URL.revokeObjectURL(review_3.src) // free memory
-                        }
-                    };
-                    var loadFile_4 = function(event) {
-                        var review_4 = document.getElementById('review_4');
-                        review_4.src = URL.createObjectURL(event.target.files[0]);
-                        review_4.onload = function() {
-                            URL.revokeObjectURL(review_4.src) // free memory
                         }
                     };
                 </script>
