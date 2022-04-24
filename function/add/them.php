@@ -284,44 +284,55 @@
                     </table>
                 </div>
 
+                <!-- render map -->
                     <h2 class="dacdiem" style="margin-top: 20px;">
                         <b>Phân bố</b><span><b style="color: red;">(*)</b></span>
                     </h2>
                     <div>
                         <?php
-                            $sql_td = "SELECT * FROM temp";
-                            $queue_td = mysqli_query($mysqli, $sql_td);
-                            while($row_td = mysqli_fetch_array($queue_td)){
-                                ?>
-                                    <iframe src="<?php echo $row_td['ten_temp'] ?>" width="300" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                <?php
+                            //Tính toán số dữ liệu để hiển thị theo trang
+                            $numOfData = 1; //Số dữ liệu hiển thị trong 1 trang
+                            $sql = "select count(*) from temp";
+                            $sql_1 = $mysqli->query($sql)->fetch_array();
+                            $numOfPages = ceil( $sql_1[0] / $numOfData );
+
+                            if( !isset($_GET['page']) ) {
+                                //Vị trí bắt đầu
+                                $vtbd = 0;
                             }
+                            else {
+                                $vtbd = ($_GET['page']-1) * $numOfData;
+                            }
+
+                            $sql_td = "SELECT * FROM temp order by ma_temp asc
+                            limit $vtbd,$numOfData";
+                            $queue_td = mysqli_query($mysqli, $sql_td);
+                            $row_td = mysqli_fetch_array($queue_td);
                         ?>
+
+                        <iframe src="<?php echo $row_td['ten_temp'] ?>" width="300" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     <div style="text-align:center">
                         <div style="display: inline-block;">
                             <ul class="pagination">
                                 <?php
-                                    $i = 1;
-                                    $sql_toado2 = "SELECT * FROM temp";
-                                    $queue_toado2 = mysqli_query($mysqli, $sql_toado2);
-                                    while($row_toado2 = mysqli_fetch_array($queue_toado2)){
-                                        ?>
-                                            <li class="page-item active">
-                                                <a class="page-link"><?php echo $i ?></a>
-                                            </li>
-                                        <?php
+                                    for($i=1; $i<=$numOfPages; $i++) {
+                                        $link = "?route=themthongtin&page=".$i;
+                                        echo "<li class='page-item active'>
+                                            <a class='page-link' href='$link'>$i</a>
+                                        </li>";
                                     }
                                 ?>
                             </ul>
                         </div>                    
                     </div>
                     </form>
-                    <form action="function/add/action_them_toado.php" method="POST" enctype="multipart/form-data">
+                    
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <tr>
-                                    <th>STT</th>
+                                    <th></th>
+                                    <th>Page</th>
                                     <th>Tọa độ</th>
                                 </tr>                            
                                     <?php
@@ -331,6 +342,12 @@
                                         while($row_toado = mysqli_fetch_array($queue_toado)){
                                             ?>
                                             <tr>
+                                                <td>
+                                                    <form method="POST" action="function/add/action_xoa_toado.php">
+                                                        <input type="hidden" name="xoa_toado" value="<?php echo $row_toado['ma_temp']; ?>">
+                                                        <button type="submit" class="btn-danger">Xóa</button>
+                                                    </form>
+                                                </td>
                                                 <td>
                                                     <?php
                                                         echo $i;
@@ -346,7 +363,8 @@
                                     ?>                            
                             </table>
                         </div>
-                            <br>
+                        <br>
+                        <form action="function/add/action_them_toado.php" method="POST">                            
                             <input type="text" class="form-control" name="toado" placeholder="Nhập tọa độ cần thêm">
                             <div class="text-end" style="margin-top: 5px;">
                                 <input type="hidden" name="stt" value="<?php echo $i; ?>">
@@ -354,10 +372,17 @@
                                     Thêm tọa độ
                                 </button>
                             </div>
-                    </form>
+                        </form>
 
                 </div>
             </div>
         </div>
         <div class="col-sm-1"></div>
     </div>
+
+<!-- Loại bỏ xác nhận gửi lại biểu mẫu -->
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>

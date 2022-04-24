@@ -96,6 +96,7 @@
                                         $mysqli->query("insert into themdongvat value('$ma_ctv','$get_ma_dv_result');");
 
                                         (new obvervation)->NotificationAndGoto("Đã thêm, cảm ơn bạn đã đóng góp!","../../index.php?route=capnhatthongtin");
+                                        
                                     } else {$_SESSION["err"] = "Trùng tên động vật có sẵn!";}
                                 //} else {$_SESSION["err"] = "Chưa nhập phân bố!";}
                             } else {$_SESSION["err"] = "Chưa nhập địa điểm!";}
