@@ -295,9 +295,11 @@
                             limit $vtbd,$numOfData";
                             $queue_td = mysqli_query($mysqli, $sql_td);
                             $row_td = mysqli_fetch_array($queue_td);
+                        
+                            //In bản đồ
+                            if (mysqli_num_rows($queue_td)!=0)
+                                echo $row_td['ten_temp'];
                         ?>
-
-                        <?php echo $row_td['ten_temp'] ?>
                     </div>
                     <div style="text-align:center">
                         <div style="display: inline-block;">
