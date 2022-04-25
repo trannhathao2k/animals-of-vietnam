@@ -17,3 +17,7 @@
     Lỗi:
     1. Trang chi tiết render thừa ảnh (ảnh lớn ở trên và 1 ảnh nhỏ đầu tiên ở dưới).
     2. Trang sửa chỉ có thể thêm ảnh, nếu trùng thì bỏ qua, ko thể xóa ảnh.
+    
+#Cập nhật 25/04/2022:
+
+    web bước vào giai đoạn test
