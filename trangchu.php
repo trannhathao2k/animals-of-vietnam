@@ -1,11 +1,12 @@
 <div class="container-fluid body py-3 px-5">
     <div class="container-fluid p-3 ochua1" style="position: relative;">
                     <span><b>Phân loại học</b></span>&#160;
-                    <select name="" class="cb" onchange="showHint(this.value)">
+                    <select id="sl-phanloai" class="cb" onchange="showHint(this.value)">
+                        <option value="all">Tất cả</option>
                         <option value="gioi">Giới</option>
                         <option value="nganh">Ngành</option>
                         <option value="lop">Lớp</option>
-                        <option value="bo" selected>Bộ</option>
+                        <option value="bo">Bộ</option>
                         <option value="ho">Họ</option>
                     </select>
                     <script>
@@ -32,31 +33,50 @@
         <!-- class="d-flex justify-content-start flex-wrap" -->
         <div  id="kq" style="margin-right: 50px; overflow-x: auto; width: 100%; white-space: nowrap">
             <?php
-                $sql_pl = "SELECT ten_bo FROM bo";
-                $query_pl = mysqli_query($mysqli,$sql_pl);
-                while($row_pl = mysqli_fetch_array($query_pl)) {
+                $sql_pl2 = "SELECT * FROM bo";
+                $query_pl2 = mysqli_query($mysqli,$sql_pl2);
+                while($row_pl2 = mysqli_fetch_array($query_pl2)) {
                     ?>
-                    <a onclick="showdv('bo', <?php echo  $row_pl['ma_bo']?>)" class="text-decoration-none">
-                        <div class="oitem" style="display: inline-block;" >
-                            <h5 class="tenloai">
-                                <?php echo $row_pl['ten_bo'] ?>
-                            </h5>       
+                        <div onclick="showdv('bo', <?php echo $row_pl2['ma_bo'] ?> )" class="oitem tenloai" style="display: inline-block;" >
+                            <input type="radio" id="<?php echo $row_pl2['ma_bo'] ?>" name="oitem" value="<?php echo $row_pl2['ma_bo'] ?>" style="opacity: 0">
+                            <label for="<?php echo $row_pl2['ma_bo'] ?>">
+                                <h5 class="tenloai"><?php echo $row_pl2['ten_bo'] ?></h5>
+                            </label>       
                         </div>
-                    </a>
                     <?php
                 }
             ?>
+            
         </div>
+        <!-- <div>
+            <p id="test"></p>
+            <script>
+                function showdv(phanloai, loai) {
+                    document.getElementById('test').innerHTML = phanloai + " - " + loai;
+                }
+            </script>
+        </div> -->
     </div>
     <div class="container-fluid p-3 px-5 ochua2 mt-3" style="position: relative;">
                 <span><b>Ưu tiên xem</b></span>&#160;
                 <select class="cb" onchange="showArrange(this.value)">
                     <option value="moinhat">Mới nhất</option>
                     <option value="cunhat">Cũ nhất</option>
+                    <option value="ten">Tên</option>
                     <option value="iucn">Bảo tồn IUCN</option>
+                    
                 </select>
                 <script>
                         function showArrange(value) {
+
+                            var phanloai = document.getElementById("sl-phanloai").value;
+
+                            var checkbox = document.getElementsByName("oitem");
+                            for (var i=0; i < checkbox.length; i++) {
+                                if (checkbox[i].checked === true) {
+                                    var loai = checkbox[i].value;
+                                }
+                            }
 
                             var xmlhttp = new XMLHttpRequest();
                             xmlhttp.onreadystatechange = function() {
@@ -64,13 +84,13 @@
                                     document.getElementById("kq-sx").innerHTML =(this.responseText); //=>kết quả trả về thêm vào element này, có html vẫn hiện được
                                 }
                             };
-                            xmlhttp.open("GET", "getdata-animal.php?animal=" + value, true);
+                            xmlhttp.open("GET", "getdata-phanloai.php?phanloai=" + phanloai + "&loai=" + loai + "&animal=" + value, true);
                             xmlhttp.send();
                         }
                     </script>
                 <br><br>
                 <?php
-                    $sql_count = "SELECT COUNT(ma_dv) soluong FROM hinhanh_index";
+                    $sql_count = "SELECT COUNT(ma_dv) soluong FROM hinhanh WHERE image_index = 1";
                     $query_count = mysqli_query($mysqli,$sql_count);
                     $count = mysqli_fetch_array($query_count);
                 ?>
@@ -79,14 +99,14 @@
                 </p>
         <div id="kq-sx" class="container-fluid d-flex justify-content-start flex-wrap align-item-start">
         <?php    
-            $sql_animal = "SELECT * FROM hinhanh_index, dongvat
-                WHERE dongvat.ma_dv = hinhanh_index.ma_dv ORDER BY dongvat.ma_dv DESC";
+            $sql_animal = "SELECT * FROM hinhanh, dongvat
+                WHERE dongvat.ma_dv = hinhanh.ma_dv AND hinhanh.image_index = 1 ORDER BY dongvat.ma_dv DESC";
             $query_animal = mysqli_query($mysqli,$sql_animal);
             while($row_animal = mysqli_fetch_array($query_animal))  {
                 ?>
                     <div class="oitem1">
                         <a class="text-decoration-none" href="?route=chitiet&id=<?php echo $row_animal['ma_dv']?>">
-                            <img class="anh-index" src="./img/animals/<?php echo $row_animal['ten_image_index'] ?>" width="50px" alt="<?php echo $row_animal['ten_image_index'] ?>">
+                            <img class="anh-index" src="./img/animals/<?php echo $row_animal['ten_image'] ?>" width="50px" alt="<?php echo $row_animal['ten_image'] ?>">
                             <div style="padding: 5px;" class="tendv">
                                 <h6 class="tendv" style="color: #006089;">
                                     <?php echo $row_animal['ten_dv'] ?>
@@ -100,3 +120,15 @@
         </div>
     </div>
 </div>
+<script>
+    function showdv(phanloai, loai) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("kq-sx").innerHTML =(this.responseText); //=>kết quả trả về thêm vào element này, có html vẫn hiện được
+            }
+        };
+        xmlhttp.open("GET", "getdata-phanloai.php?phanloai=" + phanloai + "&loai=" + loai, true);
+        xmlhttp.send();
+    }
+</script>

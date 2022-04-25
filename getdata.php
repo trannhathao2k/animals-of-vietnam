@@ -10,42 +10,46 @@ else {
     $bang = "bo";
 }
 
-if($bang){
+if($bang && $bang != "all"){
         switch($bang){
         case "gioi":
-            $sql_pl = "SELECT ten_gioi FROM gioi";
+            $sql_pl = "SELECT * FROM gioi";
             break;
         case "nganh":
-            $sql_pl = "SELECT ten_nganh FROM nganh";
+            $sql_pl = "SELECT * FROM nganh";
             break;
         case "lop":
-            $sql_pl = "SELECT ten_lop FROM lop";
+            $sql_pl = "SELECT * FROM lop";
             break;
         case "bo":
-            $sql_pl = "SELECT ten_bo FROM bo";
+            $sql_pl = "SELECT * FROM bo";
             break;
         case "ho":
-            $sql_pl = "SELECT ten_ho FROM ho";
-            break;
+            $sql_pl = "SELECT * FROM ho";
+            break;            
     }
 
     $query_pl = mysqli_query($mysqli,$sql_pl);
     while($row_pl = mysqli_fetch_array($query_pl)) {
         echo 
         '
-        <a href="?phanloai=<?php echo '.$row_pl["ma_".$bang].' ?>&loai='.$bang.'" class="text-decoration-none">
-            <div class="oitem" style="display: inline-block;" >
-                <h5 class="tenloai">
-                    '.$row_pl["ten_".$bang].'
-                </h5>       
+            <div class="oitem tenloai" onclick="showdv(\''.$bang.'\','.$row_pl["ma_$bang"].')" style="display: inline-block;" >
+                <input type="radio" id="'.$row_pl["ma_$bang"].'" name="oitem" value="'.$row_pl["ma_$bang"].'" style="opacity: 0">
+                <label for="'.$row_pl["ma_$bang"].'">
+                    <h5 class="tenloai">'.$row_pl["ten_$bang"].'</h5>
+                </label>       
             </div>
-        </a>
         ';
         
     }
 }
 else {
-    echo '<p style="color:red; font-weight: bold;">Vui lòng chọn phân loại</p>';
+    echo '<div class="oitem" onclick="showdv(\'all\',\'all\')" style="display: inline-block;" >
+            <input type="radio" id="all" name="oitem" value="all" style="opacity: 0">
+            <label for="all">
+                <h5 class="tenloai">Tất cả</h5>
+            </label>       
+        </div>';
 }
 
 

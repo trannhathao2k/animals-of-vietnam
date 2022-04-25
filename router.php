@@ -21,7 +21,7 @@
 
         case "capnhatthongtin":
             $_SESSION['Title'] = "Cập nhật thông tin";
-            include("function/update/capnhat.php");            
+            include("capnhat.php");            
             break;
 
         case "suathongtin":

@@ -117,7 +117,7 @@
     display: block;
     margin: 10px auto;
 }
-.tenloai {
+.tenloai h5 {
     color: #004973;
     font-size: 20px;
 }
@@ -213,3 +213,18 @@ td .cb {
     width: 100%;
 }
 
+.profile {
+    padding: 40px;
+    background-color: #2FAADF;
+    
+}
+
+.canhgiua {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thongtin p {
+    font-size: 20px;
+}
