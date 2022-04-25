@@ -44,6 +44,20 @@ class obvervation extends DB{
                 window.history.back();
             </script>
         <?php
-    }  
+    } 
+    function Notification($notification_str) {
+        ?>
+            <script type="text/javascript">
+                alert("<?php echo $notification_str; ?>");
+            </script>
+        <?php
+    } 
+    function GoBack() {
+        ?>
+            <script type="text/javascript">
+                window.history.back();
+            </script>
+        <?php
+    } 
 }
 ?>

@@ -193,17 +193,60 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
 
                 </table>
             </div>
-            <h2 class="dacdiem" style="margin-top: 20px;">
+            <!-- <h2 class="dacdiem" style="margin-top: 20px;">
                 <b>Phân bố</b>
             </h2>
             <div>
                 <iframe src="<?php
-                    $sql_toado = "SELECT * FROM toado WHERE ma_dv = '$_GET[id]'";
-                    $query_toado = mysqli_query($mysqli, $sql_toado);
-                    $row_toado = mysqli_fetch_array($query_toado);
-                    echo $row_toado['ten_toado'];          
+                    // $sql_toado = "SELECT * FROM toado WHERE ma_dv = '$_GET[id]'";
+                    // $query_toado = mysqli_query($mysqli, $sql_toado);
+                    // $row_toado = mysqli_fetch_array($query_toado);
+                    // echo $row_toado['ten_toado'];          
                 ?>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+            </div> -->
+            <h2 class="dacdiem" style="margin-top: 20px;">
+                        <b>Phân bố</b>
+                    </h2>
+                    <div>
+                        <?php
+                            //Tính toán số dữ liệu để hiển thị theo trang
+                            $numOfData = 1; //Số dữ liệu hiển thị trong 1 trang
+                            $sql = "select count(*) from toado where ma_dv='$_GET[id]'";
+                            $sql_1 = $mysqli->query($sql)->fetch_array();
+                            $numOfPages = ceil( $sql_1[0] / $numOfData );
+
+                            if( !isset($_GET['page']) ) {
+                                //Vị trí bắt đầu
+                                $vtbd = 0;
+                            }
+                            else {
+                                $vtbd = ($_GET['page']-1) * $numOfData;
+                            }
+
+                            $sql_td = "SELECT * FROM toado where ma_dv='$_GET[id]' order by ma_toado asc limit $vtbd,$numOfData;";
+                            $queue_td = mysqli_query($mysqli, $sql_td);
+                            $row_td = mysqli_fetch_array($queue_td);
+                        ?>
+
+                        <?php echo $row_td['ten_toado'] ?>
+                    </div>
+                    <div style="text-align:center">
+                        <div style="display: inline-block;">
+                            <ul class="pagination">
+                                <?php
+                                    for($i=1; $i<=$numOfPages; $i++) {
+                                        $link = $_SERVER['REQUEST_URI']."&page=".$i;
+                                        echo "<li class='page-item active'>
+                                            <a class='page-link' href='$link'>$i</a>
+                                        </li>";
+                                    }
+                                ?>
+                            </ul>
+                        </div>                    
+                    </div>
+                    </form>
+                    
+                        
         </div>
     </div>
 </div>

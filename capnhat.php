@@ -1,3 +1,4 @@
+
 <!-- <style>
     .alert {
     padding: 20px;
@@ -125,17 +126,17 @@
                 <th>
                     Địa điểm
                 </th>
-                <th>
-                    Phân bố
-                </th>
+                
                 <th>
                     Thao tác
                 </th>
             </tr>
 
             <?php
+            $maCTV = $_SESSION['tt_dangnhap']['ma_ctv'];
+
             //Table dongvat: ma_dv,ten_dv,ten_eng,mota,dacdiem,ma_bt_sachdovn,ma_bt_iucn,sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo
-            $delete_render_query = $mysqli->query("select * from dongvat,themdongvat where dongvat.ma_dv=themdongvat.ma_dv;");
+            $delete_render_query = $mysqli->query("select * from dongvat,themdongvat where dongvat.ma_dv=themdongvat.ma_dv and themdongvat.ma_ctv='$maCTV';");
             
             if (mysqli_num_rows($delete_render_query)!=0) {
                 while ($delete_render=$delete_render_query->fetch_array()) {
@@ -171,7 +172,7 @@
                         $bt_iucn_name = $bt_iucn_result_array[0];
                     }
                     
-                    //Get phanvo
+                    /*Get phanvo
                     $sql_phanbo = "select noiphanbo from phanbo where ma_dv='".$delete_render['ma_dv']."';";
                     $phanbo_result = $mysqli->query($sql_phanbo);
 
@@ -180,7 +181,7 @@
                     } else {
                         $phanbo_result_array = $phanbo_result->fetch_array();
                         $str_phanbo = $phanbo_result_array[0];
-                    }
+                    }*/
 
                     //Phan giup noi dung hien thi ngan hon
                     //Set name
@@ -204,7 +205,7 @@
                     $str_bt_iucn        = strip_tags($str_bt_iucn);
                     $str_sinhcanh       = strip_tags($str_sinhcanh);
                     $str_diadiem        = strip_tags($str_diadiem);
-                    $str_phanbo         = strip_tags($str_phanbo);
+                    //$str_phanbo         = strip_tags($str_phanbo);
 
 
                     // if (strlen($str_mota) > 200) {
@@ -254,13 +255,11 @@
                     <td>
                         $str_diadiem
                     </td>
-                    <td>
-                        $str_phanbo
-                    </td>
+                    
                     <td>    
                         <a href='?route=suathongtin&id=$MA_DV' target='_blank;'><button  class=\"btn btn-success\">Sửa</button></a>
                         <br><br>
-                        <form method='POST' onSubmit=\"if(!confirm('Xác nhận xóa thông tin động vật?')){return false;}\">
+                        <form method='POST' action='function/update/action_xoa.php' onSubmit=\"if(!confirm('Xác nhận xóa thông tin động vật?')){return false;}\">
                             <input type='hidden' name='xoa_MA_DV' value='$MA_DV'>
                             <input type='hidden' name='xoa_TEN_DV' value='$str_ten_dv'>
                             <button type='submit' class=\"btn btn-danger\">Xóa</button>
