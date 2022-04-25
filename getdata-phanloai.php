@@ -60,6 +60,25 @@ switch($animal) {
         $sql_animal = $sql_pl.' '."ORDER BY dongvat.ten_dv ASC";
         break;
 }
+/*
+//Tính toán số dữ liệu để hiển thị theo trang
+$numOfData = 9; //Số dữ liệu hiển thị trong 1 trang
+
+// $sql = "select count(*) from hinhanh,dongvat
+// where dongvat.ma_dv=hinhanh.ma_dv and hinhanh.image_index=1";
+
+$sql_1 = $mysqli->query($sql_animal);
+$num = mysqli_num_rows($sql_1);
+$numOfPages = ceil( $num / $numOfData );
+
+if( !isset($_GET['page']) ) {
+    //Vị trí bắt đầu
+    $vtbd = 0;
+}
+else {
+    $vtbd = ($_GET['page']-1) * $numOfData;
+}//
+$sql_animal .=" limit $vtbd,$numOfData";*/
 
 $query_animal = mysqli_query($mysqli,$sql_animal);
 while($row_animal = mysqli_fetch_array($query_animal)) {
@@ -75,6 +94,21 @@ while($row_animal = mysqli_fetch_array($query_animal)) {
         </a>
     </div>';
     // ''.$sql_animal.'';
+    
 }
-
-?>
+?><!-- 
+<div style="text-align:center">
+    <div style="display: inline-block;">
+        <ul class="pagination">
+            <?php
+                // for($i=1; $i<=$numOfPages; $i++) {
+                //     $link = "?route=trangchu&page=".$i;
+                //     echo "<li class='page-item active'>
+                //         <a class='page-link' href='$link'>$i</a>
+                //     </li>";
+                // }
+            ?>
+        </ul>
+    </div>                    
+</div>
+ -->

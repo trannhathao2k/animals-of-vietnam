@@ -97,10 +97,27 @@
                 <p style="color:red; position: absolute; top: 30px; right: 50px">
                     <b>(Có tất cả <?php echo $count['soluong'] ?> loài)</b>
                 </p>
+
+        <!-- render dongvat -->
         <div id="kq-sx" class="container-fluid d-flex justify-content-start flex-wrap align-item-start">
-        <?php    
+        <?php 
+            //Tính toán số dữ liệu để hiển thị theo trang
+            $numOfData = 16; //Số dữ liệu hiển thị trong 1 trang
+            $sql = "select count(*) from hinhanh,dongvat
+            where dongvat.ma_dv=hinhanh.ma_dv and hinhanh.image_index=1";
+            $sql_1 = $mysqli->query($sql)->fetch_array();
+            $numOfPages = ceil( $sql_1[0] / $numOfData );
+
+            if( !isset($_GET['page']) ) {
+                //Vị trí bắt đầu
+                $vtbd = 0;
+            }
+            else {
+                $vtbd = ($_GET['page']-1) * $numOfData;
+            }//
+        
             $sql_animal = "SELECT * FROM hinhanh, dongvat
-                WHERE dongvat.ma_dv = hinhanh.ma_dv AND hinhanh.image_index = 1 ORDER BY dongvat.ma_dv DESC";
+                WHERE dongvat.ma_dv = hinhanh.ma_dv AND hinhanh.image_index = 1 ORDER BY dongvat.ma_dv DESC limit $vtbd,$numOfData";
             $query_animal = mysqli_query($mysqli,$sql_animal);
             while($row_animal = mysqli_fetch_array($query_animal))  {
                 ?>
@@ -117,7 +134,25 @@
                 <?php
                     }
                 ?>
+                
         </div>
+        <!-- phân trang -->
+                <div style="text-align:center">
+                    <div style="display: inline-block;">
+                        <ul class="pagination">
+                            <?php
+                                for($i=1; $i<=$numOfPages; $i++) {
+                                    $link = "?route=trangchu&page=".$i;
+                                    echo "<li class='page-item active'>
+                                        <a class='page-link' href='$link'>$i</a>
+                                    </li>";
+                                }
+                            ?>
+                        </ul>
+                    </div>                    
+                </div>
+                <!--  -->
+        
     </div>
 </div>
 <script>

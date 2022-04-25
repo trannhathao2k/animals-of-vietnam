@@ -1,28 +1,3 @@
-
-<!-- <style>
-    .alert {
-    padding: 20px;
-    background-color: #F44336;
-    color: white;
-    }
-
-    .closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    }
-
-    .closebtn:hover {
-    color: black;
-    }
-</style> -->
-
-
 <?php
     if (isset($_POST['xoa_MA_DV']) and isset($_POST['xoa_TEN_DV'])) {
         $sql_xoa_ctv = "delete from themdongvat where ma_dv='".$_POST['xoa_MA_DV']."';";
@@ -172,16 +147,6 @@
                         $bt_iucn_name = $bt_iucn_result_array[0];
                     }
                     
-                    /*Get phanvo
-                    $sql_phanbo = "select noiphanbo from phanbo where ma_dv='".$delete_render['ma_dv']."';";
-                    $phanbo_result = $mysqli->query($sql_phanbo);
-
-                    if (mysqli_num_rows($phanbo_result)==0) {
-                        $str_phanbo = "Chưa cập nhật..";
-                    } else {
-                        $phanbo_result_array = $phanbo_result->fetch_array();
-                        $str_phanbo = $phanbo_result_array[0];
-                    }*/
 
                     //Phan giup noi dung hien thi ngan hon
                     //Set name
@@ -205,27 +170,6 @@
                     $str_bt_iucn        = strip_tags($str_bt_iucn);
                     $str_sinhcanh       = strip_tags($str_sinhcanh);
                     $str_diadiem        = strip_tags($str_diadiem);
-                    //$str_phanbo         = strip_tags($str_phanbo);
-
-
-                    // if (strlen($str_mota) > 200) {
-                    //     // truncate string
-                    //     $stringCut = substr($str_mota, 0, 200); $endPoint = strrpos($stringCut, ' ');
-
-                    //     //if the string doesn't contain any space then it will cut without word basis.
-                    //     $str_mota = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                    //     $str_mota .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
-                    // }
-                    // if (strlen($str_dacdiem) > 200) {
-                    //     $stringCut = substr($str_dacdiem, 0, 200); $endPoint = strrpos($stringCut, ' ');
-                    //     $str_dacdiem = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                    //     $str_dacdiem .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
-                    // }
-                    // if (strlen($str_phanbo) > 200) {
-                    //     $stringCut = substr($str_phanbo, 0, 200); $endPoint = strrpos($stringCut, ' ');
-                    //     $str_phanbo = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                    //     $str_phanbo .= '... <a href="?route=chitiet&id='.$MA_DV.'">Read More</a>';
-                    //}
 
                     echo "<tr>
                     <td>
