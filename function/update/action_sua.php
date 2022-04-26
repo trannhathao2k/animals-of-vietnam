@@ -145,21 +145,21 @@
 
                                     //Thêm ảnh
                                     if ($ten_file_anh_1!="") {
-                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_1','$ma_dv',0);");
+                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_1',1,'$ma_dv');");
 
                                         //Thêm file ảnh đã tải lên
                                         $link_anh_1 = "../../img/animals/".$ten_file_anh_1;
                                         move_uploaded_file($_FILES['hinh_anh_1']['tmp_name'],$link_anh_1);
                                     }
                                     if ($ten_file_anh_2!="") {
-                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_2','$ma_dv',0);");
+                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_2',0,'$ma_dv');");
 
                                         //Thêm file ảnh đã tải lên
                                         $link_anh_2 = "../../img/animals/".$ten_file_anh_2;
                                         move_uploaded_file($_FILES['hinh_anh_2']['tmp_name'],$link_anh_2);
                                     }
                                     if ($ten_file_anh_3!="") {
-                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_3','$ma_dv',0);");
+                                        $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_3',0,'$ma_dv');");
 
                                         //Thêm file ảnh đã tải lên
                                         $link_anh_3 = "../../img/animals/".$ten_file_anh_3;
