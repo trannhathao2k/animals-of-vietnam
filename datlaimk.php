@@ -45,7 +45,7 @@ if(isset($_POST["mk"])&&isset($_POST["r_mk"])){
         <div style="background-color: #CDEDED; padding: 20px;">
             <div class="row">
                 <div class="col-6 cangiuaanh">
-                    <img src="./img/canhcut.png" alt="" style="height: 400px; width:380px;">
+                    <img src="./img/LogoCanhcuc.PNG" alt="" style="height: 400px; width:380px;">
                     <img src="./img/logoxanh.png" alt="">
                     <img src="./img/nentang.png" alt="">
                 </div>

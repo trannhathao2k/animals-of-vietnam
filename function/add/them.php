@@ -297,7 +297,14 @@
                             $row_td = mysqli_fetch_array($queue_td);
                         ?>
 
-                        <?php echo $row_td['ten_temp'] ?>
+                        <?php
+                            if ($numOfPages === 0) {
+                                echo $row_td['ten_temp'];
+                            }
+                            else {
+                                echo "";
+                            }
+                        ?>
                     </div>
                     <div style="text-align:center">
                         <div style="display: inline-block;">

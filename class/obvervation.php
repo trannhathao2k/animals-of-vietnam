@@ -12,7 +12,7 @@ class obvervation extends DB{
     }
     function them($tentk, $mk, $ten, $email, $sdt){
         $sql = "insert into obvervation(hoten_ctv, uname, passwd, email_ctv, sdt) 
-                values ('$ten','$tentk','$mk','$email',$sdt)";
+                values ('$ten','$tentk','$mk','$email','$sdt')";
         $this->query($sql);
     }
     function ktDangNhap($u, $p){

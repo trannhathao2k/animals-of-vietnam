@@ -38,6 +38,8 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
                 <img id="logo" src="./img/logo.png" alt="Logo">
                 <img id="thuonghieu" src="./img/thuonghieu.png" alt="Thương hiệu">&#160;&#160;
             </a>
+
+            <a href="./admin/dangnhap-admin.php" class="text-decoration-none text-white link">Đăng nhập với vai trò Admin</a>
             
                 <b class="dacdiem" style="font-size: 30px; ">
                     <b>
