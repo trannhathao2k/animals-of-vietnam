@@ -14,7 +14,7 @@ if(isset($_POST["ten"])&&isset($_POST["mk"])){
     ) $_SESSION["err"] = "Tên tài khoản hoặc mật khẩu sai";
     else{
         $_SESSION["admin"] = $kt[0]["ma_ad"];
-        header("location:./danhsachdv.php");
+        header("location:./quanlydv.php");
     }
 
 }

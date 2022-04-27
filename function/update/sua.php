@@ -406,7 +406,7 @@
                         ?>
 
                         <?php
-                            if ($numOfPages === 0) {
+                            if ($numOfPages != 0) {
                                 echo $row_td['ten_temp'];
                             }
                             else {
@@ -433,9 +433,8 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <tr>
-                                <th></th>
+                                <th>Thao tác</th>
                                 <th>Page</th>
-                                <th>Tọa độ</th>
                             </tr>                            
                                 <?php
                                     $i = 1;
@@ -455,9 +454,6 @@
                                                     echo $i;
                                                     $i++;
                                                 ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row_toado['ten_temp'] ?>
                                             </td>
                                         </tr>
                                         <?php

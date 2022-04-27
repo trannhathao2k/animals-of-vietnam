@@ -31,44 +31,61 @@ session_start();
             <a href="./dangxuat-admin.php" class="text-decoration-none text-white link">Đăng xuất</a>
                 <b class="dacdiem" style="font-size: 30px; ">
                     <b>
-                        ADMIN
+                        ADMIN - QUẢN LÝ CỘNG TÁC VIÊN
                     </b>
                 </b>
         </div>
-        <div style="background-color: #CDEDED; padding: 20px;">
+        <div style="background-color: white; padding: 20px; min-height: 500px">
             <div class="mx-auto" style="width: 60%">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <tr>
-                        <th style="width:30%;">
+                        <th style="width:10%;">
                             Mã CTV
+                        </th>
+                        <th>
+                            Ảnh đại diện
                         </th>
                         <th>
                             Tên CTV
                         </th>
                         <th>
-
+                            Email
+                        </th>
+                        <th>
+                            SDT
+                        </th>
+                        <th>
+                            Thao tác
                         </th>
                     </tr>
                     <?php
-                        $sql = "select ma_ctv, hoten_ctv from obvervation";
+                        $sql = "select * from obvervation";
                         $data = mysqli_fetch_all(mysqli_query($conn, $sql), MYSQLI_ASSOC);
                         if(!is_null($data)&&!empty($data)){
                             foreach($data as $x){
-                                echo '<tr>';
-                                echo
-                                '
-                                <td>
-                                '.$x["ma_ctv"].'
-                                </td>
-                                <td>
-                                '.$x["hoten_ctv"].'
-                                </td>
-                                <td>
-                                    <a class="btn btn-danger" href="xoactv.php?id='.$x["ma_ctv"].'" >Xóa</a>
-                                </td>
-                                ';
-                                echo '</tr>';
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $x["ma_ctv"] ?>
+                                    </td>
+                                    <td>
+                                        <img src="../img/<?php echo $x['anh-ctv'] ?>" alt="anhdaidien" width="50px" height="50px">
+                                    </td>
+                                    <td>
+                                        <?php echo $x["hoten_ctv"] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $x['email_ctv'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $x['sdt'] ?>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger" href="xoactv.php?id=<?php echo $x["ma_ctv"]?>">Xóa</a>
+                                    </td>
+                                </tr>
+                                <?php
                             }
                         }
                     ?>

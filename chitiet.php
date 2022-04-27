@@ -226,9 +226,14 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                             $sql_td = "SELECT * FROM toado where ma_dv='$_GET[id]' order by ma_toado asc limit $vtbd,$numOfData;";
                             $queue_td = mysqli_query($mysqli, $sql_td);
                             $row_td = mysqli_fetch_array($queue_td);
-                        ?>
 
-                        <?php echo $row_td['ten_toado'] ?>
+                            if ($numOfPages != 0) {
+                                echo $row_td['ten_toado'];
+                            }
+                            else {
+                                echo "";
+                            }
+                        ?>
                     </div>
                     <div style="text-align:center">
                         <div style="display: inline-block;">
@@ -271,13 +276,13 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
             </div> -->
             <?php
                 $ma_bo = $row_chitiet['ma_bo'];
-                $sql_dvcungbo = "SELECT * FROM dongvat, hinhanh_index WHERE dongvat.ma_dv = hinhanh_index.ma_dv AND ma_bo = '$ma_bo'";
+                $sql_dvcungbo = "SELECT * FROM dongvat, hinhanh WHERE dongvat.ma_dv = hinhanh.ma_dv AND image_index = 1 AND ma_bo = '$ma_bo'";
                 $query_dvcungbo = mysqli_query($mysqli, $sql_dvcungbo);
                 
                 while ($row_dvcungbo = mysqli_fetch_array($query_dvcungbo)){
                     ?>
                     <div class="oitem1">
-                    <img class="anh-index" src="./img/animals/<?php echo $row_dvcungbo['ten_image_index'] ?>" alt="anhdongvat">
+                    <img class="anh-index" src="./img/animals/<?php echo $row_dvcungbo['ten_image'] ?>" alt="anhdongvat">
                     <div style="padding: 5px;">
                         <h6 class=""><b>
                             <?php

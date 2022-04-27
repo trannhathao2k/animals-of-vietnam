@@ -29,13 +29,23 @@
 <div class="container-fluid p4">
     <div style="padding: 20px; background-color: #CDEDED; margin: 20px 30px 20px 30px; border-radius: 5px;">
         <div class="row">
-            <div class="col-sm-5 canhgiua">
-                <img src="./img/116051595_116558240147817_8993678454444835442_n.jpg" alt="Ảnh đại diện"
-                    class="img-thumbnail"
-                    style="height: 300px; width: 300px;border: 4px;border-color: white;">
+            <div class="col-sm-5">
+                <div class="canhgiua">
+                    <img src="./img/<?php
+                    $ma_ctv = $_SESSION['tt_dangnhap']['ma_ctv'];
+                    $sql_profile = "SELECT * FROM obvervation WHERE ma_ctv = '$ma_ctv'";
+                    $query_profile3 = mysqli_query($mysqli, $sql_profile);
+                    $row_profile3 = mysqli_fetch_array($query_profile3);
+                    echo $row_profile3['anh-ctv'];
+                ?>" alt="Ảnh đại diện" class="img-thumbnail" style="height: 250px; width: 250px;border: 4px;border-color: white;">
+                </div>
+                <div class="canhgiua" style="margin-top: 10px;">
+                    <button type="button" class="btn btn-primary">Đổi ảnh đại diện</button>
+                </div>
+                              
             </div>
             <div class="col-sm-7 thongtin">
-                <div style="margin-left: 30px;">
+                <div style="margin-left: 30px;" id="suatt">
                 <?php
                     $ma_ctv = $_SESSION['tt_dangnhap']['ma_ctv'];
                     $sql_profile = "SELECT * FROM obvervation WHERE ma_ctv = '$ma_ctv'";
@@ -59,7 +69,17 @@
                         <?php
                     }
                 ?>
+                <?php
+                    $query_profile2 = mysqli_query($mysqli, $sql_profile);
+                    $row_profile2 = mysqli_fetch_array($query_profile2);
+                ?>
+
+                <div style="margin-left: 60px;" onclick="showSuaTT('<?php echo $row_profile2['ma_ctv'] ?>')">
+                    <button type="button" class="btn btn-primary">Sửa thông tin</button>
                 </div>
+                </div>
+
+                
                 
             </div>
         </div>
@@ -111,7 +131,7 @@
             $maCTV = $_SESSION['tt_dangnhap']['ma_ctv'];
 
             //Table dongvat: ma_dv,ten_dv,ten_eng,mota,dacdiem,ma_bt_sachdovn,ma_bt_iucn,sinhcanh,diadiem,ma_gioi,ma_nganh,ma_lop,ma_ho,ma_bo
-            $delete_render_query = $mysqli->query("select * from dongvat,themdongvat where dongvat.ma_dv=themdongvat.ma_dv and themdongvat.ma_ctv='$maCTV';");
+            $delete_render_query = $mysqli->query("select * from dongvat,themdongvat where dongvat.ma_dv=themdongvat.ma_dv and themdongvat.ma_ctv='$maCTV' ORDER BY dongvat.ma_dv DESC;");
             
             if (mysqli_num_rows($delete_render_query)!=0) {
                 while ($delete_render=$delete_render_query->fetch_array()) {
@@ -223,4 +243,18 @@
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
+</script>
+
+<script>
+    function showSuaTT(ma_ctv) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("suatt").innerHTML =(this.responseText); //=>kết quả trả về thêm vào element này, có html vẫn hiện được
+            }
+        };
+        xmlhttp.open("GET", "capnhat-ctv.php?ma-ctv=" + ma_ctv, true);
+        xmlhttp.send();
+    }
+
 </script>

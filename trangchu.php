@@ -95,63 +95,71 @@
                     $count = mysqli_fetch_array($query_count);
                 ?>
                 <p style="color:red; position: absolute; top: 30px; right: 50px">
-                    <b>(Có tất cả <?php echo $count['soluong'] ?> loài)</b>
+                    <b>(Có tất cả <?php echo $count['soluong'] ?> loài đã được thêm)</b>
                 </p>
 
         <!-- render dongvat -->
-        <div id="kq-sx" class="container-fluid d-flex justify-content-start flex-wrap align-item-start">
-        <?php 
-            //Tính toán số dữ liệu để hiển thị theo trang
-            $numOfData = 16; //Số dữ liệu hiển thị trong 1 trang
-            $sql = "select count(*) from hinhanh,dongvat
-            where dongvat.ma_dv=hinhanh.ma_dv and hinhanh.image_index=1";
-            $sql_1 = $mysqli->query($sql)->fetch_array();
-            $numOfPages = ceil( $sql_1[0] / $numOfData );
+        <div id="kq-sx">
+            <div class="container-fluid d-flex justify-content-start flex-wrap align-item-start">
+                <?php 
+                    //Tính toán số dữ liệu để hiển thị theo trang
+                    $numOfData = 16; //Số dữ liệu hiển thị trong 1 trang
+                    $sql = "select count(*) from hinhanh,dongvat
+                    where dongvat.ma_dv=hinhanh.ma_dv and hinhanh.image_index=1";
+                    $sql_1 = $mysqli->query($sql)->fetch_array();
+                    $numOfPages = ceil( $sql_1[0] / $numOfData );
 
-            if( !isset($_GET['page']) ) {
-                //Vị trí bắt đầu
-                $vtbd = 0;
-            }
-            else {
-                $vtbd = ($_GET['page']-1) * $numOfData;
-            }//
-        
-            $sql_animal = "SELECT * FROM hinhanh, dongvat
-                WHERE dongvat.ma_dv = hinhanh.ma_dv AND hinhanh.image_index = 1 ORDER BY dongvat.ma_dv DESC limit $vtbd,$numOfData";
-            $query_animal = mysqli_query($mysqli,$sql_animal);
-            while($row_animal = mysqli_fetch_array($query_animal))  {
-                ?>
-                    <div class="oitem1">
-                        <a class="text-decoration-none" href="?route=chitiet&id=<?php echo $row_animal['ma_dv']?>">
-                            <img class="anh-index" src="./img/animals/<?php echo $row_animal['ten_image'] ?>" width="50px" alt="<?php echo $row_animal['ten_image'] ?>">
-                            <div style="padding: 5px;" class="tendv">
-                                <h6 class="tendv" style="color: #006089;">
-                                    <?php echo $row_animal['ten_dv'] ?>
-                                </h6>
-                            </div>
-                        </a>
-                    </div>
-                <?php
+                    if( !isset($_GET['page']) ) {
+                        //Vị trí bắt đầu
+                        $vtbd = 0;
                     }
-                ?>
+                    else {
+                        $vtbd = ($_GET['page']-1) * $numOfData;
+                    }//
                 
-        </div>
-        <!-- phân trang -->
-                <div style="text-align:center">
-                    <div style="display: inline-block;">
-                        <ul class="pagination">
-                            <?php
+                    $sql_animal = "SELECT * FROM hinhanh, dongvat
+                        WHERE dongvat.ma_dv = hinhanh.ma_dv AND hinhanh.image_index = 1 ORDER BY dongvat.ma_dv DESC limit $vtbd,$numOfData";
+                    $query_animal = mysqli_query($mysqli,$sql_animal);
+                    while($row_animal = mysqli_fetch_array($query_animal))  {
+                        ?>
+                            <div class="oitem1">
+                                <a class="text-decoration-none" href="?route=chitiet&id=<?php echo $row_animal['ma_dv']?>">
+                                    <img class="anh-index" src="./img/animals/<?php echo $row_animal['ten_image'] ?>" width="50px" alt="<?php echo $row_animal['ten_image'] ?>">
+                                    <div style="padding: 5px;" class="tendv">
+                                        <h6 class="tendv" style="color: #006089;">
+                                            <?php echo $row_animal['ten_dv'] ?>
+                                        </h6>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php
+                            }
+                        ?>
+            </div>
+            <!-- phân trang -->
+            <div style="text-align:center;">
+                <div style="display:inline-block">
+                    <ul class="pagination">
+                        <?php
+                            if ($numOfPages === 0) {
+                                echo '';
+                            }
+                            else {
                                 for($i=1; $i<=$numOfPages; $i++) {
-                                    $link = "?route=trangchu&page=".$i;
-                                    echo "<li class='page-item active'>
-                                        <a class='page-link' href='$link'>$i</a>
-                                    </li>";
+                                $link = "?route=trangchu&page=".$i;
+                                echo "<li class='page-item active'>
+                                    <a class='page-link' href='$link'>$i</a>
+                                </li>";
                                 }
-                            ?>
-                        </ul>
-                    </div>                    
-                </div>
-                <!--  -->
+                            }
+                            
+                        ?>
+                    </ul>
+                </div>                    
+            </div>
+            <!--  -->            
+        </div>
+        
         
     </div>
 </div>

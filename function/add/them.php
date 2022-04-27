@@ -298,7 +298,7 @@
                         ?>
 
                         <?php
-                            if ($numOfPages === 0) {
+                            if ($numOfPages != 0) {
                                 echo $row_td['ten_temp'];
                             }
                             else {
@@ -306,6 +306,7 @@
                             }
                         ?>
                     </div>
+
                     <div style="text-align:center">
                         <div style="display: inline-block;">
                             <ul class="pagination">
