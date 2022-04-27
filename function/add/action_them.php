@@ -76,7 +76,7 @@
                                         $get_ma_dv = $mysqli->query("select ma_dv from dongvat order by ma_dv desc;")->fetch_array();
                                         $get_ma_dv_result = $get_ma_dv[0];
 
-                                        //table hinhanh: ma_image,ten_image,ma_dv,hinhanh_index
+                                        //table hinhanh: ma_image,ten_image,hinhanh_index,ma_dv
                                         if ($ten_file_anh_1!="") {
                                             $mysqli->query("insert into hinhanh value(null,'$ten_file_anh_1',1,'$get_ma_dv_result');");     //Ảnh ở vị trí 1 là ảnh ở index
 
