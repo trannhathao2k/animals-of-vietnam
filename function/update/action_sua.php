@@ -101,7 +101,7 @@
 
                                     //Nếu đổi ảnh -> xóa ảnh cũ để thêm ảnh mới
                                     if ($ten_file_anh_1!="" and $ten_file_anh_1!=$old_image_1) {
-                                        (new obvervation)->Notification("Đổi ảnh 1! ".$old_image_1." -> ".$ten_file_anh_1);
+                                        //(new obvervation)->Notification("Đổi ảnh 1! ".$old_image_1." -> ".$ten_file_anh_1);
                                         $mysqli->query("delete from hinhanh where ma_dv='$ma_dv' and ten_image='$old_image_1'");
                                         //unlink
                                         $path = '../../img/animals/'.$old_image_1;
@@ -109,13 +109,13 @@
                                         chown($path, 666);
 
                                         if (unlink($path)) {
-                                            (new obvervation)->NotificationAndGoback("Xóa ảnh 1! ".$old_image_1);
+                                            //(new obvervation)->NotificationAndGoback("Xóa ảnh 1! ".$old_image_1);
                                         } else {
-                                            (new obvervation)->NotificationAndGoback("Ko xóa ảnh 1! ".$old_image_1);
+                                            //(new obvervation)->NotificationAndGoback("Ko xóa ảnh 1! ".$old_image_1);
                                         }
                                     }
                                     if ($ten_file_anh_2!="" and $ten_file_anh_2!=$old_image_2) {
-                                        (new obvervation)->Notification("Đổi ảnh 2! ".$old_image_2." -> ".$ten_file_anh_2);
+                                        //(new obvervation)->Notification("Đổi ảnh 2! ".$old_image_2." -> ".$ten_file_anh_2);
                                         $mysqli->query("delete from hinhanh where ma_dv='$ma_dv' and ten_image='$old_image_2'");
                                         //unlink
                                         $path = '../../img/animals/'.$old_image_2;
@@ -123,13 +123,13 @@
                                         chown($path, 666);
 
                                         if (unlink($path)) {
-                                            (new obvervation)->NotificationAndGoback("Xóa ảnh 2! ".$old_image_2);
+                                            //(new obvervation)->NotificationAndGoback("Xóa ảnh 2! ".$old_image_2);
                                         } else {
-                                            (new obvervation)->NotificationAndGoback("Ko xóa ảnh 2! ".$old_image_2);
+                                            //(new obvervation)->NotificationAndGoback("Ko xóa ảnh 2! ".$old_image_2);
                                         }
                                     }
                                     if ($ten_file_anh_3!="" and $ten_file_anh_3!=$old_image_3) {
-                                        (new obvervation)->Notification("Đổi ảnh 3! ".$old_image_3." -> ".$ten_file_anh_3);
+                                        //(new obvervation)->Notification("Đổi ảnh 3! ".$old_image_3." -> ".$ten_file_anh_3);
                                         $mysqli->query("delete from hinhanh where ma_dv='$ma_dv' and ten_image='$old_image_3'");
                                         //unlink
                                         $path = '../../img/animals/'.$old_image_3;
@@ -137,9 +137,9 @@
                                         chown($path, 666);
 
                                         if (unlink($path)) {
-                                            (new obvervation)->NotificationAndGoback("Xóa ảnh 3! ".$old_image_3);
+                                            //(new obvervation)->NotificationAndGoback("Xóa ảnh 3! ".$old_image_3);
                                         } else {
-                                            (new obvervation)->NotificationAndGoback("Ko xóa ảnh 3! ".$old_image_3);
+                                            //(new obvervation)->NotificationAndGoback("Ko xóa ảnh 3! ".$old_image_3);
                                         }
                                     }
 
@@ -168,6 +168,9 @@
 
                                     //Table toado: ma_toado,ten_toado,ma_dv
                                     if ($i!=0) {
+                                        //Làm sạch tọa độ cũ
+                                        $mysqli->query("delete from toado where ma_dv='$ma_dv'");
+                                        //Thêm tọa độ mới
                                         for ($j=1; $j<=$i; $j++) {
                                             $tenToaDo = ${"toaDo".$j};
                                             $mysqli->query("insert into toado value(null,'$tenToaDo','$ma_dv');");

@@ -14,8 +14,8 @@
         }
         
 
-        $sql_xoa_phanbo = "delete from phanbo where ma_dv='".$_POST['xoa_MA_DV']."';";
-            $mysqli->query($sql_xoa_phanbo);
+        $sql_xoa_toado = "delete from toado where ma_dv='".$_POST['xoa_MA_DV']."';";
+            $mysqli->query($sql_xoa_toado);
         
         $sql_xoa_hinh_anh = "delete from hinhanh where ma_dv='".$_POST['xoa_MA_DV']."';";
             $mysqli->query($sql_xoa_hinh_anh);
@@ -26,26 +26,27 @@
     }
 ?>
 
+<!-- Thông tin CTV -->
 <div class="container-fluid p4">
     <div style="padding: 20px; background-color: #CDEDED; margin: 20px 30px 20px 30px; border-radius: 5px;">
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="canhgiua">
-                    <img src="./img/<?php
-                    $ma_ctv = $_SESSION['tt_dangnhap']['ma_ctv'];
-                    $sql_profile = "SELECT * FROM obvervation WHERE ma_ctv = '$ma_ctv'";
-                    $query_profile3 = mysqli_query($mysqli, $sql_profile);
-                    $row_profile3 = mysqli_fetch_array($query_profile3);
-                    echo $row_profile3['anh-ctv'];
-                ?>" alt="Ảnh đại diện" class="img-thumbnail" style="height: 250px; width: 250px;border: 4px;border-color: white;">
+        <div class="row" id="suatt">
+            <!-- avatar -->           
+                <div class="col-sm-5">
+                    <div class="canhgiua">
+                        <?php 
+                            $ma_ctv = $_SESSION['tt_dangnhap']['ma_ctv'];
+                            $sql_profile = "SELECT * FROM obvervation WHERE ma_ctv = '$ma_ctv'";
+                            $query_profile3 = mysqli_query($mysqli, $sql_profile);
+                            $row_profile3 = mysqli_fetch_array($query_profile3);
+                            $ten_image_ctv = $row_profile3['anh_ctv'];
+                        ?>
+
+                        <img id="review_ctv" src="./img/<?php echo $ten_image_ctv; ?>" alt="Ảnh đại diện" class="img-thumbnail" style="height: 250px; width: 250px;border: 4px;border-color: white;">
+                    </div>   
                 </div>
-                <div class="canhgiua" style="margin-top: 10px;">
-                    <button type="button" class="btn btn-primary">Đổi ảnh đại diện</button>
-                </div>
-                              
-            </div>
+            <!-- infor -->
             <div class="col-sm-7 thongtin">
-                <div style="margin-left: 30px;" id="suatt">
+                <div style="margin-left: 30px;">
                 <?php
                     $ma_ctv = $_SESSION['tt_dangnhap']['ma_ctv'];
                     $sql_profile = "SELECT * FROM obvervation WHERE ma_ctv = '$ma_ctv'";
@@ -78,13 +79,11 @@
                     <button type="button" class="btn btn-primary">Sửa thông tin</button>
                 </div>
                 </div>
-
-                
-                
             </div>
         </div>
     </div>
 </div>
+<!--  -->
 
 <div style="padding: 40px; background-color: #FFFFFF;">
     <div class="table-responsive" style="overflow-x:auto;
@@ -256,5 +255,4 @@
         xmlhttp.open("GET", "capnhat-ctv.php?ma-ctv=" + ma_ctv, true);
         xmlhttp.send();
     }
-
 </script>

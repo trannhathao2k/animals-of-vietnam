@@ -5,7 +5,7 @@
     
     if (isset($_POST['toado'])) {
         $toaDo = $_POST['toado'];
-
+        $_SESSION['no_reload'] = "yes";
         if ($toaDo!="") {
             $mysqli->query("insert into temp value(null,'$toaDo');");
             (new obvervation)->GoBack();

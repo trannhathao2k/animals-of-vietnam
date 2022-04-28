@@ -48,17 +48,23 @@
     }
     //
 
-    //Đưa các tọa độ vào bảng temp
-    $sqlGetToaDo = $mysqli->query("select * from toado where ma_dv='$ma_dv'");
+    if (isset($_SESSION['no_reload'])) unset($_SESSION['no_reload']);
+    else {
+        //Đưa các tọa độ vào bảng temp
+        $sqlGetToaDo = $mysqli->query("select * from toado where ma_dv='$ma_dv'");
 
-    if (mysqli_num_rows($sqlGetToaDo)!=0) {
-        while ($getToaDoArr=$sqlGetToaDo->fetch_array()) {
-            $toaDo = $getToaDoArr['ten_toado'];
-            $mysqli->query("insert into temp value(null,'$toaDo')");
+        if (mysqli_num_rows($sqlGetToaDo)!=0) {
+            //làm sạch temp trước
+            $mysqli->query("delete from temp;");
+
+            while ($getToaDoArr=$sqlGetToaDo->fetch_array()) {
+                $toaDo = $getToaDoArr['ten_toado'];
+                $mysqli->query("insert into temp value(null,'$toaDo')");
+            }
+            
         }
-        //Xóa toa độ của động vật cần sửa (Sẽ thêm lại khi sửa xong mà vẫn giữ)
-        $mysqli->query("delete from toado where ma_dv='$ma_dv'");
     }
+    
 
 ?>
 

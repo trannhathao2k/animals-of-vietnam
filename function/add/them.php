@@ -299,19 +299,10 @@
                             //In bản đồ
                             if (mysqli_num_rows($queue_td)!=0)
                                 echo $row_td['ten_temp'];
-                        ?>
-<<<<<<< HEAD
-
-                        <?php
-                            if ($numOfPages != 0) {
-                                echo $row_td['ten_temp'];
-                            }
                             else {
                                 echo "";
                             }
                         ?>
-=======
->>>>>>> e8db9c97abc0933f1ecba3ecef749589aa17ac0c
                     </div>
 
                     <div style="text-align:center">
